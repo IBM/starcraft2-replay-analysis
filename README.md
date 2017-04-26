@@ -30,8 +30,6 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 * [Data Science](https://medium.com/ibm-data-science-experience): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
 
-* [Tensorflow](https://www.tensorflow.org/): An open source software library for numerical computation using data flow graphs.
-
 * [sc2reader](http://sc2reader.readthedocs.io/en/latest/): A python library that extracts data from various [Starcraft II](http://us.battle.net/sc2/en/) resources to power tools and services for the SC2 community.
 
 # Steps
