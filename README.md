@@ -72,12 +72,16 @@ Click on `Add notebooks` (upper right) to create a notebook.
 * Enter this Notebook URL: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
 * Click the `Create Notebook` button.
 
+![Flow](doc/source/images/create_notebook_from_url.png)
+
 ## 4. Add the replay file
 
 #### Add the replay to the notebook
 Use "Find and Add Data" (look for the 10/01 icon)
 and its "Files" tab. From there you can click
 "browse" and add a .SC2Replay file from your computer.
+
+![Flow](doc/source/images/add_file.png)
 
 #### Create an empty cell
 Use the "+" button above to create an empty cell to hold
@@ -87,6 +91,8 @@ the inserted code and credentials.
 After you add the file, use its "Insert to code" drop-down menu.
 Make sure your active cell is the empty one created earlier.
 Select "Insert StringIO object" from the drop-down menu.
+
+![Flow](doc/source/images/insert_to_code.png)
 
 Note: This cell is marked as a hidden_cell because it contains
 sensitive credentials.
@@ -112,6 +118,8 @@ To use the "content" bytes like this:
 return StringIO(resp2.content)
 ```
 
+![Flow](doc/source/images/inserted_stringio.png)
+
 #### Fix-up variable names
 The inserted code includes a generated method with credentials and then calls
 the generated method to set a variable with a name like "data_1". If you do
@@ -128,12 +136,17 @@ Use the DSX menu to select the project containing the notebook.
 
 Use "Find and Add Data" (look for the 10/01 icon)
 and its "Connections" tab. From there you can click "Create Connection".
+
+![Flow](doc/source/images/create_connection.png)
+
 Give the connection a name and optionally a description.
 Under "Service Category" select the "Data Service" button.
 Use the "Target service instance" drop-down and select your Cloudant NoSQL DB instance
 (e.g., sc2-cloudantNoSQLDB-service).
-Make sure the connection you created is enabled with a checkbox in "Connections".
 
+![Flow](doc/source/images/add_cloudant_conn.png)
+
+Make sure the connection you created is enabled with a checkbox in "Connections".
 
 #### Create an empty cell
 Use the "+" button above to create an empty cell to hold
@@ -145,6 +158,8 @@ and its "Connections" tab. You should see the
 connection name created earlier.
 Make sure your active cell is the empty one created earlier.
 Select "Insert to code" (below your connection name).
+
+![Flow](doc/source/images/insert_cloudant_conn.png)
 
 Note: This cell is marked as a hidden_cell because it contains sensitive credentials.
 
