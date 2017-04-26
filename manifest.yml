@@ -1,0 +1,12 @@
+declared-services:
+  sc2-cloudantNoSQLDB-service:
+    label: cloudantNoSQLDB
+    plan: Lite
+applications:
+- services:
+   - sc2-cloudantNoSQLDB-service
+  memory: 128M
+  no-route: true
+  name: starcraft2-replay-analysis
+  health-check-type: none
+  buildpack: noop-buildpack
