@@ -46,7 +46,7 @@ described in detail below.
 1. [Create a connection to Cloudant](#5-create-a-connection-to-cloudant)
 1. [Run the notebook](#6-run-the-notebook)
 1. [Analyze the results](#7-analyze-the-results)
-1. [Save and Share](#8-save-and-share)
+1. [Save and share](#8-save-and-share)
 
 ## 1. Sign up for the Data Science Experience
 
@@ -187,7 +187,7 @@ to see how you came your conclusions. The text, code and output/charts are
 combined in a single web page. For an audience that does not want to see the
 code, you can share a web page that only shows text and output/charts.
 
-## 8. Save and Share
+## 8. Save and share
 
 ### How to save your work:
 
