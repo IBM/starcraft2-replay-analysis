@@ -42,7 +42,6 @@ described in detail below.
 1. [Sign up for the Data Science Experience](#1-sign-up-for-the-data-science-experience)
 1. [Create Bluemix services](#2-create-bluemix-services)
 1. [Create the notebook](#3-create-the-notebook)
-1. [Create the notebook](#3-create-the-notebook)
 1. [Add the replay file](#4-Add-the-replay-file)
 1. [Create a connection to Cloudant](#5-Create-a-connection-to-Cloudant)
 1. [Run the notebook](#6-run-the-notebook)
@@ -72,8 +71,6 @@ Click on `Add notebooks` (upper right) to create a notebook.
 * Optionally, enter a description for the notebook.
 * Enter this Notebook URL: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
 * Click the `Create Notebook` button.
-
-![](doc/source/images/create_notebook.png)
 
 ## 4. Add the replay file
 
