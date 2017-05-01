@@ -10,7 +10,7 @@ When the reader has completed this journey, they will understand how to:
 * Use sc2reader to load a replay into a Python object.
 * Examine some of the basic replay information in the result.
 * Parse the contest details into a usable object.
-* Visualize the contest with Bokey graphics.
+* Visualize the contest with Bokeh graphics.
 * Store the processed replay in Cloudant.
 
 The intended audience for this journey is application developers who
