@@ -83,7 +83,8 @@ and its "Files" tab. From there you can click
 
 #### Create an empty cell
 Use the "+" button above to create an empty cell to hold
-the inserted code and credentials.
+the inserted code and credentials. You can put this cell
+at the top or anywhere before "Load the replay".
 
 #### Insert to code
 After you add the file, use its "Insert to code" drop-down menu.
@@ -148,7 +149,8 @@ Make sure the connection you created is enabled with a checkbox in "Connections"
 
 #### Create an empty cell
 Use the "+" button above to create an empty cell to hold
-the inserted code and credentials.
+the inserted code and credentials. You can put this cell
+at the top or anywhere before "Storing replay files".
 
 #### Add the Cloudant credentials to the notebook
 Use "Find and Add Data" (look for the 10/01 icon)
