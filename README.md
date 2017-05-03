@@ -28,9 +28,13 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 ## Featured technologies
 
-* [Data Science](https://medium.com/ibm-data-science-experience): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
+* [Jupyter Notebooks](http://jupyter.org/): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
 
-* [sc2reader](http://sc2reader.readthedocs.io/en/latest/): A python library that extracts data from various [Starcraft II](http://us.battle.net/sc2/en/) resources to power tools and services for the SC2 community.
+* [sc2reader](http://sc2reader.readthedocs.io/en/latest/): A Python library that extracts data from various [Starcraft II](http://us.battle.net/sc2/en/) resources to power tools and services for the SC2 community.
+
+* [pandas](http://pandas.pydata.org/): A Python library providing high-performance, easy-to-use data structures.
+
+* [Bokeh](http://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
 
 # Steps
 
@@ -201,6 +205,99 @@ without sharing the code. You can share the code for an audience that wants
 to see how you came your conclusions. The text, code and output/charts are
 combined in a single web page. For an audience that does not want to see the
 code, you can share a web page that only shows text and output/charts.
+
+### Basic output
+
+Basic replay information is printed out to show you how you can start working
+with a loaded replay. The output is also, of course, very helpful to identify
+which replay you are looking at.
+
+### Data preparation
+
+If you look through the code, you'll see that a lot of work went into preparing
+the data.
+
+#### Unit and building groups
+
+List of strings were created for the _known_ unit and groups. These are needed
+to recognize the event types.
+
+#### Event handlers
+
+Handler methods where written to process the different types of events and
+accumulate the information in the player's event list.
+
+#### The ReplayData class
+
+We created the `ReplayData` class to take a replay stream of bytes and process
+them with all our event handlers. The resulting player event lists are stored
+in a `ReplayData` object. The `ReplayData` class also has an `as_dict()`
+method. This method retuns a Python dictionary that makes it easy to process
+the replay events with our Python code. We also use this dict to create a
+Cloudant JSON document.
+
+### Visualization
+
+To visualize the replay we chose to use 2 different types of charts and
+show a side-by-side comparison of the competing players.
+
+* Nelson rules charts
+* Box plot charts
+
+We generate these charts for each of the following metrics. You will get a
+good idea of how the players are performing by comparing the trends for these
+metrics.
+
+* Mineral collection rate
+* Vespene collection rate
+* Active workers count
+* Supply utilization (used / available)
+* Worker/supply ratio (workers / supply used)
+
+#### Box plot charts
+
+Once you get to this point, you can see that generating a box plot is quite
+easy thanks to _pandas DataFrames_ and _Bokeh BoxPlot_.
+
+The box plot is a graphical representation of the summary statistics for the
+metric for each player. The "box" covers the range from the first to the third
+quartile. The horizontal line in the box shows the mean. The "whisker" shows
+the spread of data outside these quartiles. Outliers, if any, show up as
+markers outside the whisker lines.
+
+For each metric, we show the players statistics side-by-side using a box plots.
+
+#### Nelson rules charts
+
+The Nelson rules charts are not so easy. You'll notice quite a bit of code in
+helper methods to create these charts.
+
+The base chart is a Bokeh plotting figure with circle markers for each
+data point in the time series. This shows the event metrics over time for
+the player. The player charts are side-by-side to allow separate scales
+and plenty of additional annotations.
+
+We add horizontal lines to show our x-bar (sample mean), 1st and 2nd standard
+deviations and upper and lower control limits -- for each player.
+
+We use our `detect_nelson_bias()` method to detect 9 or more consecutive points
+above (or below)the x-bar line. Then using Bokeh's `add_layout()` and
+`BoxAnnotation`, we color the background green or red for ranges that show
+bias for above or below the line respectively.
+
+Our `detect_nelson_trend()` method detects when 6 or more consecutive points
+are all increasing or decreasing. Using Bokeh's `add_layout()` and `Arrow`, we
+draw arrows on the chart to highlight these up or down trends.
+
+The result is a side-by-side comparison that is jam-packed with statistical
+analysis.
+
+### Stored replay documents
+
+You can browse your Cloudant database to see the stored replays. After all
+the loading and parsing we stored them as JSON documents. You'll see all
+of your replays in the *sc2replays* database and only the latest one in
+*sc2recents*.
 
 ## 8. Save and share
 
