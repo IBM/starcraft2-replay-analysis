@@ -230,7 +230,7 @@ options to specify exactly what you want shared from your notebook:
 
 # Sample output
 
-TODO
+[Example](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/sample_output/data/examples/sample_output.md)
 
 # Troubleshooting
 
