@@ -79,7 +79,7 @@ Click on `Add notebooks` (upper right) to create a notebook.
 ## 4. Add the replay file
 
 #### Add the replay to the notebook
-Use `Find and Add Data` (look for the `10/01`icon)
+Use `Find and Add Data` (look for the `10/01` icon)
 and its `Files` tab. From there you can click
 `browse` and add a .SC2Replay file from your computer.
 
