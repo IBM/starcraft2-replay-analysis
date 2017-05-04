@@ -56,8 +56,8 @@ Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By sig
 
 ## 2. Create Bluemix services
 
-Create the following Bluemix services by clicking the **Deploy to Bluemix**
-button or by following the links to use the Bluemix UI and create them.
+Create the following Bluemix service by clicking the **Deploy to Bluemix**
+button or by following the links to use the Bluemix UI and create it.
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
   
@@ -79,21 +79,21 @@ Click on `Add notebooks` (upper right) to create a notebook.
 ## 4. Add the replay file
 
 #### Add the replay to the notebook
-Use "Find and Add Data" (look for the 10/01 icon)
-and its "Files" tab. From there you can click
-"browse" and add a .SC2Replay file from your computer.
+Use `Find and Add Data` (look for the `10/01` icon)
+and its `Files` tab. From there you can click
+`browse` and add a .SC2Replay file from your computer.
 
 ![Flow](doc/source/images/add_file.png)
 
 #### Create an empty cell
-Use the "+" button above to create an empty cell to hold
+Use the `+` button above to create an empty cell to hold
 the inserted code and credentials. You can put this cell
-at the top or anywhere before "Load the replay".
+at the top or anywhere before `Load the replay`.
 
 #### Insert to code
-After you add the file, use its "Insert to code" drop-down menu.
+After you add the file, use its `Insert to code` drop-down menu.
 Make sure your active cell is the empty one created earlier.
-Select "Insert StringIO object" from the drop-down menu.
+Select `Insert StringIO object` from the drop-down menu.
 
 ![Flow](doc/source/images/insert_to_code.png)
 
@@ -103,7 +103,7 @@ sensitive credentials.
 #### Fix the code!
 
 We don't want to treat the replay as unicode text. We want the bytes.
-Change this import:
+In the inserted code, change this import:
 ```python
 from io import StringIO
 ```
@@ -125,52 +125,52 @@ return StringIO(resp2.content)
 
 #### Fix-up variable names
 The inserted code includes a generated method with credentials and then calls
-the generated method to set a variable with a name like "data_1". If you do
+the generated method to set a variable with a name like `data_1`. If you do
 additional inserts, the method can be re-used and the variable will change
-(e.g. "data_2").
+(e.g. `data_2`).
 
 Later in the notebook, we set `replay_file = data_1`. So you might need to
-fix the variable name "data_1" to match your inserted code.
+fix the variable name `data_1` to match your inserted code.
 
 ## 5. Create a connection to Cloudant
 
 #### Add a new connection to the project
 Use the DSX menu to select the project containing the notebook.
 
-Use "Find and Add Data" (look for the 10/01 icon)
-and its "Connections" tab. From there you can click "Create Connection".
+Use `Find and Add Data` (look for the `10/01` icon)
+and its `Connections` tab. From there you can click `Create Connection`.
 
 ![Flow](doc/source/images/create_connection.png)
 
 Give the connection a name and optionally a description.
-Under "Service Category" select the "Data Service" button.
-Use the "Target service instance" drop-down and select your Cloudant NoSQL DB instance
-(e.g., sc2-cloudantNoSQLDB-service).
+Under `Service Category` select the `Data Service` button.
+Use the `Target service instance` drop-down and select your Cloudant NoSQL DB instance
+(e.g., `sc2-cloudantNoSQLDB-service`).
 
 ![Flow](doc/source/images/add_cloudant_conn.png)
 
-Make sure the connection you created is enabled with a checkbox in "Connections".
+Make sure the connection you created is enabled with a checkbox in `Connections`.
 
 #### Create an empty cell
-Use the "+" button above to create an empty cell to hold
+Use the `+` button above to create an empty cell to hold
 the inserted code and credentials. You can put this cell
-at the top or anywhere before "Storing replay files".
+at the top or anywhere before `Storing replay files`.
 
 #### Add the Cloudant credentials to the notebook
-Use "Find and Add Data" (look for the 10/01 icon)
-and its "Connections" tab. You should see the
+Use `Find and Add Data` (look for the `10/01` icon)
+and its `Connections` tab. You should see the
 connection name created earlier.
 Make sure your active cell is the empty one created earlier.
-Select "Insert to code" (below your connection name).
+Select `Insert to code` (below your connection name).
 
 ![Flow](doc/source/images/insert_cloudant_conn.png)
 
-Note: This cell is marked as a hidden_cell because it contains sensitive credentials.
+Note: This cell is marked as a `hidden_cell` because it contains sensitive credentials.
 
 #### Fix-up variable names
 The inserted code includes a dictionary with credentials assigned to a variable
-with a name like "credentials_1". It may have a different name (e.g. "credentials_2").
-Rename it or reassign it if needed. The notebook code assumes it will be "credentials_1".
+with a name like `credentials_1`. It may have a different name (e.g. `credentials_2`).
+Rename it or reassign it if needed. The notebook code assumes it will be `credentials_1`.
 
 ## 6. Run the notebook
 
@@ -219,12 +219,12 @@ the data.
 
 #### Unit and building groups
 
-List of strings were created for the _known_ unit and groups. These are needed
+List of strings were created for the _known_ units and groups. These are needed
 to recognize the event types.
 
 #### Event handlers
 
-Handler methods where written to process the different types of events and
+Handler methods were written to process the different types of events and
 accumulate the information in the player's event list.
 
 #### The ReplayData class
@@ -232,7 +232,7 @@ accumulate the information in the player's event list.
 We created the `ReplayData` class to take a replay stream of bytes and process
 them with all our event handlers. The resulting player event lists are stored
 in a `ReplayData` object. The `ReplayData` class also has an `as_dict()`
-method. This method retuns a Python dictionary that makes it easy to process
+method. This method returns a Python dictionary that makes it easy to process
 the replay events with our Python code. We also use this dict to create a
 Cloudant JSON document.
 
@@ -273,15 +273,15 @@ The Nelson rules charts are not so easy. You'll notice quite a bit of code in
 helper methods to create these charts.
 
 The base chart is a Bokeh plotting figure with circle markers for each
-data point in the time series. This shows the event metrics over time for
+data point in the time series. This shows the metric over time for
 the player. The player charts are side-by-side to allow separate scales
 and plenty of additional annotations.
 
 We add horizontal lines to show our x-bar (sample mean), 1st and 2nd standard
-deviations and upper and lower control limits -- for each player.
+deviations and upper and lower control limits for each player.
 
 We use our `detect_nelson_bias()` method to detect 9 or more consecutive points
-above (or below)the x-bar line. Then using Bokeh's `add_layout()` and
+above (or below) the x-bar line. Then, using Bokeh's `add_layout()` and
 `BoxAnnotation`, we color the background green or red for ranges that show
 bias for above or below the line respectively.
 
