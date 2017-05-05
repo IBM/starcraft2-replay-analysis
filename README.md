@@ -83,6 +83,9 @@ Use `Find and Add Data` (look for the `10/01` icon)
 and its `Files` tab. From there you can click
 `browse` and add a .SC2Replay file from your computer.
 
+> Note:  If you don't have your own replays, you can get our example by cloning
+this git repo. Look in the `data/example_input` directory.
+
 ![](doc/source/images/add_file.png)
 
 #### Create an empty cell
