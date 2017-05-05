@@ -16,7 +16,7 @@ When the reader has completed this journey, they will understand how to:
 The intended audience for this journey is application developers who
 need to process StarCraft II replay files and build powerful visualizations.
 
-![Flow](doc/source/images/architecture.png)
+![](doc/source/images/architecture.png)
 
 ## Included components
 
@@ -74,7 +74,7 @@ Click on `Add notebooks` (upper right) to create a notebook.
 * Enter this Notebook URL: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
 * Click the `Create Notebook` button.
 
-![Flow](doc/source/images/create_notebook_from_url.png)
+![](doc/source/images/create_notebook_from_url.png)
 
 ## 4. Add the replay file
 
@@ -83,7 +83,7 @@ Use `Find and Add Data` (look for the `10/01` icon)
 and its `Files` tab. From there you can click
 `browse` and add a .SC2Replay file from your computer.
 
-![Flow](doc/source/images/add_file.png)
+![](doc/source/images/add_file.png)
 
 #### Create an empty cell
 Use the `+` button above to create an empty cell to hold
@@ -95,7 +95,7 @@ After you add the file, use its `Insert to code` drop-down menu.
 Make sure your active cell is the empty one created earlier.
 Select `Insert StringIO object` from the drop-down menu.
 
-![Flow](doc/source/images/insert_to_code.png)
+![](doc/source/images/insert_to_code.png)
 
 Note: This cell is marked as a hidden_cell because it contains
 sensitive credentials.
@@ -121,7 +121,7 @@ To use the "content" bytes like this:
 return StringIO(resp2.content)
 ```
 
-![Flow](doc/source/images/inserted_stringio.png)
+![](doc/source/images/inserted_stringio.png)
 
 #### Fix-up variable names
 The inserted code includes a generated method with credentials and then calls
@@ -134,20 +134,38 @@ fix the variable name `data_1` to match your inserted code.
 
 ## 5. Create a connection to Cloudant
 
+#### Create a database
+Before you an add a connection, you need a database.
+Use your Bluemix dashboard to find the service you created.
+If you used `Deploy to Bluemix` look for `sc2-cloudantNoSQLDB-service`.
+If you created the service directly in Bluemix you may have picked a
+different name or used the default name of `Cloudant NoSQL DB-` with a random
+suffix.
+
+* Click on the service.
+
+* Use the `Manage` tab and hit the `LAUNCH` button.
+
+* Click on the Databases icon on the left menu.
+
+* Click `Create Database` on the top. When prompted for a database
+name, you can use any name. We just need any database before creating
+a connection.
+
 #### Add a new connection to the project
 Use the DSX menu to select the project containing the notebook.
 
 Use `Find and Add Data` (look for the `10/01` icon)
 and its `Connections` tab. From there you can click `Create Connection`.
 
-![Flow](doc/source/images/create_connection.png)
+![](doc/source/images/create_connection.png)
 
 Give the connection a name and optionally a description.
 Under `Service Category` select the `Data Service` button.
 Use the `Target service instance` drop-down and select your Cloudant NoSQL DB instance
 (e.g., `sc2-cloudantNoSQLDB-service`).
 
-![Flow](doc/source/images/add_cloudant_conn.png)
+![](doc/source/images/add_cloudant_conn.png)
 
 Make sure the connection you created is enabled with a checkbox in `Connections`.
 
@@ -163,7 +181,7 @@ connection name created earlier.
 Make sure your active cell is the empty one created earlier.
 Select `Insert to code` (below your connection name).
 
-![Flow](doc/source/images/insert_cloudant_conn.png)
+![](doc/source/images/insert_cloudant_conn.png)
 
 Note: This cell is marked as a `hidden_cell` because it contains sensitive credentials.
 
@@ -211,6 +229,8 @@ code, you can share a web page that only shows text and output/charts.
 Basic replay information is printed out to show you how you can start working
 with a loaded replay. The output is also, of course, very helpful to identify
 which replay you are looking at.
+
+![](doc/source/images/basic_info.png)
 
 ### Data preparation
 
@@ -267,6 +287,13 @@ markers outside the whisker lines.
 
 For each metric, we show the players statistics side-by-side using a box plots.
 
+![](doc/source/images/box_plot_chart.png)
+
+In the above screen shot, you see side-by-side vespene per minute statistics.
+In this contest, Neeb had the advantage. In addition to the box which shows
+the quartiles and the whisker that shows the range, this example has outlier
+indicators. In many cases, there will be no outliers.
+
 #### Nelson rules charts
 
 The Nelson rules charts are not so easy. You'll notice quite a bit of code in
@@ -291,6 +318,14 @@ draw arrows on the chart to highlight these up or down trends.
 
 The result is a side-by-side comparison that is jam-packed with statistical
 analysis.
+
+![](doc/source/images/nelson_rules_chart.png)
+
+In the above screen shot, you see the time/value hover details that you get
+with Bokeh interactive charts. Also notice the different scales and the arrows.
+In this contest, Neeb made two early pushes and got an advantage in minerals.
+If you run the notebook, you'll see other examples showing where the winner
+got the advantage.
 
 ### Stored replay documents
 
