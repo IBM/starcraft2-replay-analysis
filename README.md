@@ -365,7 +365,11 @@ options to specify exactly what you want shared from your notebook:
 
 # Sample output
 
-[Example](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/sample_output/data/examples/sample_output.html)
+The sample_output.html in data/examples has embedded JavaScript for
+interactive Bokeh charts. Use rawgit.com to view it with the following
+link:
+
+[Sample Output](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
 
 # Troubleshooting
 
