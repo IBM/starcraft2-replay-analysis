@@ -36,6 +36,10 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 * [Bokeh](http://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
 
+# Watch the Video
+
+[![](http://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
+
 # Steps
 
 Follow these steps to setup and run this developer journey. The steps are
