@@ -1,229 +1,230 @@
-# StarCraft II Replay Analysis with Jupyter Notebooks
+# Jupyter Notebook으로 하는 스타크래프트 II 리플레이 분석
 
-In this developer journey we will use Jupyter notebooks to analyze
-StarCraft II replays and extract interesting insights.
+*다른 언어로 보기: [English](README.md).*
 
-When the reader has completed this journey, they will understand how to:
+이 개발 과정에서는 Jupyter Notebook을 사용하여
+스타크래프트 II 리플레이를 분석하여 흥미로운 인사이트를 이끌어냅니다.
 
-* Create and run a Jupyter notebook in DSX.
-* Use DSX Object Storage to access a replay file.
-* Use sc2reader to load a replay into a Python object.
-* Examine some of the basic replay information in the result.
-* Parse the contest details into a usable object.
-* Visualize the contest with Bokeh graphics.
-* Store the processed replay in Cloudant.
+이 과정을 마치면 다음의 방법을 배울 수 있습니다:
 
-The intended audience for this journey is application developers who
-need to process StarCraft II replay files and build powerful visualizations.
+* DSX에서 쥬피터 노트북의 생성 및 실행
+* 리플레이 파일에 액세스하기 위해 DSX Object Storage를 사용하기
+* sc2reader를 사용하여 Python 객체에 리플레이를 로딩하기
+* 결과에서 몇 가지 기본적인 리플레이 정보를 확인
+* 컨테스트 세부 정보를 사용 가능한 객체로 파싱하기
+* Bokeh 그래픽으로 컨테스트를 시각화하기
+* 처리 완료된 리플레이를 Cloudant에 저장하기
+
+이 과정은 스타크래프트 II 리플레이 파일의 처리를 통해 
+멋지게 시각화를 하려는 애플리케이션 개발자에게 적합한 과정일 것입니다.
 
 ![](doc/source/images/architecture.png)
 
-## Included components
+## 구성 요소
 
-* [IBM Data Science Experience](https://www.ibm.com/bs-en/marketplace/data-science-experience): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
+* [IBM Data Science Experience](https://www.ibm.com/bs-en/marketplace/data-science-experience): managed Spark와 같은 IBM 서비스를 포함하는 사전 구성된 협업 환경에서 RStudio, Jupyter 및 Python을 사용하여 데이터를 분석합니다.
 
-* [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
+* [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB는 유연한 JSON 스키마를 활용하는 최신 웹 및 모바일 애플리케이션을 위해 설계된 완전 관리(fully managed)되는 데이터 레이어입니다.
 
-* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): A Bluemix service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
+* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): 구조화되지 않은 클라우드 데이터 저장소를 제공하는 Bluemix 서비스로 안정성 높은, 비용 효율적인 앱 및 서비스를 빠르게 빌드하고 제공합니다
 
-## Featured technologies
+## 주요 기술
 
-* [Jupyter Notebooks](http://jupyter.org/): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
+* [Jupyter Notebooks](http://jupyter.org/): 라이브 코드, 방정식, 시각 자료 및 텍스트가 포함된 문서를 만들고 공유할 수있는 오픈소스 웹 애플리케이션입니다.
 
-* [sc2reader](http://sc2reader.readthedocs.io/en/latest/): A Python library that extracts data from various [Starcraft II](http://us.battle.net/sc2/en/) resources to power tools and services for the SC2 community.
+* [sc2reader](http://sc2reader.readthedocs.io/en/latest/): 다양한 [Starcraft II](http://us.battle.net/sc2/en/) 리소스에서 SC2 커뮤니티를 위한 툴과 서비스에 필요한 데이터를 추출하는 Python 라이브러리.
 
-* [pandas](http://pandas.pydata.org/): A Python library providing high-performance, easy-to-use data structures.
+* [pandas](http://pandas.pydata.org/): 고성능의 사용하기 쉬운 데이터 구조를 제공하는 Python 라이브러리.
 
-* [Bokeh](http://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
+* [Bokeh](http://bokeh.pydata.org/en/latest/): 인터랙티브한 Python 시각화 라이브러리.
 
-# Watch the Video
+# 비디오 보기
 
 [![](http://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
 
-# Steps
+# 단계
 
-Follow these steps to setup and run this developer journey. The steps are
-described in detail below.
+이 개발 과정을 설정하고 실행하려면 다음의 단계를 따르십시오. 
+아래에 자세히 설명되어 있습니다.
 
-1. [Sign up for the Data Science Experience](#1-sign-up-for-the-data-science-experience)
-1. [Create Bluemix services](#2-create-bluemix-services)
-1. [Create the notebook](#3-create-the-notebook)
-1. [Add the replay file](#4-add-the-replay-file)
-1. [Create a connection to Cloudant](#5-create-a-connection-to-cloudant)
-1. [Run the notebook](#6-run-the-notebook)
-1. [Analyze the results](#7-analyze-the-results)
-1. [Save and share](#8-save-and-share)
+1. [Data Science Experience에 가입](#1-data-science-experience에-가입)
+1. [Bluemix 서비스 생성](#2-bluemix-서비스-생성)
+1. [노트북을 생성합니다](#3-노트북을-생성합니다)
+1. [리플레이 파일 추가](#4-리플레이-파일-추가)
+1. [Cloudant에 연결 생성](#5-cloudant에-연결-생성)
+1. [노트북을 실행합니다](#6-노트북을-실행합니다)
+1. [결과 분석](#7-결과-분석)
+1. [저장 및 공유](#8-저장-및-공유)
 
-## 1. Sign up for the Data Science Experience
+## 1. Data Science Experience에 가입
 
-Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By signing up for the Data Science Experience, two services: ``DSX-Spark`` and ``DSX-ObjectStore`` will be created in your Bluemix account.
+IBM이 제공하는 [Data Science Experience](http://datascience.ibm.com/)에 가입합니다. Data Science Experience에 가입하면, 두 개의 서비스: ``DSX-Spark`` 와 ``DSX-ObjectStore`` 가 여러분의 Bluemix 계정에 생성됩니다.
 
-## 2. Create Bluemix services
+## 2. Bluemix 서비스 생성
 
-Create the following Bluemix service by clicking the **Deploy to Bluemix**
-button or by following the links to use the Bluemix UI and create it.
+**Deploy to Bluemix** 버튼을 클릭하여 아래의 Bluemix 서비스를 생성합니다. 
+또는 아래의 링크로 가서 Bluemix UI를 사용하여 생성합니다.
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
   
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+[![Bluemix에 배포](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
-## 3. Create the notebook
+## 3. Notebook을 생성
 
-Use the menu on the left to select `My Projects` and then `Default Project`.
-Click on `Add notebooks` (upper right) to create a notebook.
+좌측의 메뉴 중 `My Projects`를 선택한 후 `Default Project`를 클릭합니다.
+`Add notebooks` (우측 상단에 위치)를 클릭하여 노트북을 생성합니다.
 
-* Select the `From URL` tab.
-* Enter a name for the notebook.
-* Optionally, enter a description for the notebook.
-* Enter this Notebook URL: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
-* Click the `Create Notebook` button.
+* `From URL` 탭을 선택합니다.
+* 노트북의 이름을 입력합니다.
+* 선택적으로 노트북에 대한 설명을 입력합니다.
+* 이 노트북 URL을 입력합니다: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
+* `Create Notebook` 버튼을 클릭합니다.
 
 ![](doc/source/images/create_notebook_from_url.png)
 
-## 4. Add the replay file
+## 4. 리플레이 파일 추가
 
-#### Add the replay to the notebook
-Use `Find and Add Data` (look for the `10/01` icon)
-and its `Files` tab. From there you can click
-`browse` and add a .SC2Replay file from your computer.
+#### 노트북에 리플레이를 추가합니다
+`Find and Add Data` (`10/01` 아이콘을 찾으세요)와 
+그 안에 위치한 `Files` 탭을 사용합니다. From there you can click
+거기서 `browse`를 클릭하여 여러분 컴퓨터에 있는 .SC2Replay 파일을 추가합니다.
 
-> Note:  If you don't have your own replays, you can get our example by cloning
-this git repo. Look in the `data/example_input` directory.
+> 참고:  만약 직접 플레이한 게임 리플레이 파일이 없으시면, 이 git repo를 클론해서 샘플을 사용하세요.
+`data/example_input` 디렉토리에 있습니다.
 
 ![](doc/source/images/add_file.png)
 
-#### Create an empty cell
-Use the `+` button above to create an empty cell to hold
-the inserted code and credentials. You can put this cell
-at the top or anywhere before `Load the replay`.
+#### 셀을 생성합니다
+상단의 `+` 버튼을 클릭해 입력된 코드와 신임 정보를 저장할 빈 칸을 생성합니다. 
+이 칸을 맨 위에 두시거나 `Load the replay` 앞의 아무 위치에나 두셔도 됩니다 .
 
-#### Insert to code
-After you add the file, use its `Insert to code` drop-down menu.
-Make sure your active cell is the empty one created earlier.
-Select `Insert StringIO object` from the drop-down menu.
+#### 코드에 입력합니다
+파일을 추가한 이후, 파일의 드롭다운 메뉴에서 `Insert to code` 를 클릭합니다.
+활성화 된 셀이 조금 전에 생성한 셀인지 확인합니다.
+드롭다운 메뉴에서 `Insert StringIO object`을 선택합니다.
 
 ![](doc/source/images/insert_to_code.png)
 
-Note: This cell is marked as a hidden_cell because it contains
-sensitive credentials.
+참고: 이 셀은 민감한 개인 정보를 담고 있기 때문에 
+hidden_cell 로 분류됩니다.
 
-#### Fix the code!
+#### 코드 고치기!
 
-We don't want to treat the replay as unicode text. We want the bytes.
-In the inserted code, change this import:
+유니코드 텍스트로 리플레이를 처리하는 것만큼은 피하고 싶습니다. 바이트로 처리하겠습니다. 
+
+입력된 코드 중, 아래의 import 라인을:
 ```python
 from io import StringIO
 ```
-To use StringIO like this:
+StringIO 을 이렇게 사용하도록 수정합니다:
 ```python
 from StringIO import StringIO
 ```
 
-Change this return line:
+아래 리턴 라인을:
 ```python
 return StringIO(resp2.text)
 ```
-To use the "content" bytes like this:
+"컨텐츠"를 바이트로 사용하기 위해 아래와 같이 수정합니다:
 ```python
 return StringIO(resp2.content)
 ```
 
 ![](doc/source/images/inserted_stringio.png)
 
-#### Fix-up variable names
-The inserted code includes a generated method with credentials and then calls
-the generated method to set a variable with a name like `data_1`. If you do
-additional inserts, the method can be re-used and the variable will change
-(e.g. `data_2`).
+#### Fix-up variable names 변수 이름을 변경합니다
+입력된 코드에는 신임 정보가 있는 메서드가 호출된 후,
+'data_1`과 같은 이름으로 변수를 설정하는 메서드를 호출합니다. 추가적인 입력을 하신다면, 
+이 메서드를 다시 사용하여 변수를 변경할 수 있습니다 (예: `data_2`).
 
-Later in the notebook, we set `replay_file = data_1`. So you might need to
-fix the variable name `data_1` to match your inserted code.
+이후 노트북에 `replay_file = data_1`를 설정할 것입니다. 그러니 입력된 코드와 맞추기 위해
+변수 이름을 `data_1`으로 변경하십시오.
 
-## 5. Create a connection to Cloudant
+## 5. Cloudant에 연결 생성
 
-#### Create a database
-Before you an add a connection, you need a database.
-Use your Bluemix dashboard to find the service you created.
-If you used `Deploy to Bluemix` look for `sc2-cloudantNoSQLDB-service`.
-If you created the service directly in Bluemix you may have picked a
-different name or used the default name of `Cloudant NoSQL DB-` with a random
-suffix.
+#### 데이터베이스 생성
+연결을 추가하기 전에 데이터베이스를 확보해야 합니다.
+Bluemix 대시보드로 여러분이 생성한 서비스를 검색합니다.
+`sc2-cloudantNoSQLDB-service`를 찾기 위해 `Deploy to Bluemix`를 사용하셨다면,
+혹은 Bluemix에 서비스를 직접 생성하셨다면 다른 이름을 사용하셨거나 
+디폴트 이름인 `Cloudant NoSQL DB-` 에 랜덤한 접미사를 붙여서 사용 중이시라면,
 
-* Click on the service.
+* 서비스를 클릭합니다.
 
-* Use the `Manage` tab and hit the `LAUNCH` button.
+* `Manage` 탭을 열어 `LAUNCH` 버튼을 클릭합니다.
 
-* Click on the Databases icon on the left menu.
+* 좌측 메뉴의 데이터베이스 아이콘을 클릭합니다.
 
-* Click `Create Database` on the top. When prompted for a database
-name, you can use any name. We just need any database before creating
-a connection.
+* 상단의 `Create Database`을 클릭합니다. 데이터베이스 이름을 묻는 화면이 나타나면, 
+어느 이름이라도 사용할 수 있습니다. 연결 전에는 어떠한 데이터베이스라도 필요하니까요.
 
-#### Add a new connection to the project
-Use the DSX menu to select the project containing the notebook.
+#### 프로젝트에 새로운 연결을 추가합니다. 
+DSX 메뉴를 사용하여 노트북을 포함하고 있는 프로젝트를 선택합니다.
 
-Use `Find and Add Data` (look for the `10/01` icon)
-and its `Connections` tab. From there you can click `Create Connection`.
+`Find and Add Data`를 선택하여 (`10/01` 아이콘을 찾으세요)
+하위의 `Connections` 탭을 선택합니다. 거기서 `Create Connection`을 클릭합니다.
 
 ![](doc/source/images/create_connection.png)
 
-Give the connection a name and optionally a description.
-Under `Service Category` select the `Data Service` button.
-Use the `Target service instance` drop-down and select your Cloudant NoSQL DB instance
+연결에 이름을 입력하고, 선택적으로 설명도 입력합니다.
+`Service Category` 아래의 `Data Service` 버튼을 선택합니다.
+드롭다운 메뉴에서 `Target service instance`를 사용해 나의 Cloudant NoSQL DB 인스턴스를 선택합니다 
 (e.g., `sc2-cloudantNoSQLDB-service`).
 
 ![](doc/source/images/add_cloudant_conn.png)
 
-Make sure the connection you created is enabled with a checkbox in `Connections`.
+생성한 연결이 'Connections'의 체크박스에 표시가 되어 있는지 확인하십시오.
 
-#### Create an empty cell
-Use the `+` button above to create an empty cell to hold
-the inserted code and credentials. You can put this cell
-at the top or anywhere before `Storing replay files`.
+#### 셀을 생성합니다
+상단의 `+` 버튼을 클릭해 입력된 코드와 신임 정보를 저장할 빈 칸을 생성합니다. 
+이 칸을 맨 위에 두시거나 `Storing replay files` 앞의 아무 위치에나 두셔도 됩니다.
 
-#### Add the Cloudant credentials to the notebook
-Use `Find and Add Data` (look for the `10/01` icon)
-and its `Connections` tab. You should see the
-connection name created earlier.
-Make sure your active cell is the empty one created earlier.
-Select `Insert to code` (below your connection name).
+#### 노트북에 Cloudant 신임정보를 추가합니다
+`Find and Add Data`를 사용하여 (`10/01` 아이콘을 찾으세요)
+하위의 `Connections` 탭으로 들어가면 이전에 생성한 
+연결 이름을 확인할 수 있습니다. 
+현재 활성화된 셀이 이전에 생성한 셀인지 확인합니다.
+`Insert to code`(생성한 연결 이름 아래의)를 선택합니다.
 
 ![](doc/source/images/insert_cloudant_conn.png)
 
-Note: This cell is marked as a `hidden_cell` because it contains sensitive credentials.
+참고: 이 셀은 민감한 개인 정보를 담고 있기 때문에 hidden_cell 로 분류됩니다.
 
-#### Fix-up variable names
-The inserted code includes a dictionary with credentials assigned to a variable
-with a name like `credentials_1`. It may have a different name (e.g. `credentials_2`).
-Rename it or reassign it if needed. The notebook code assumes it will be `credentials_1`.
+#### 변수 이름을 변경합니다
+입력된 코드는 `credentials_1` 등의 이름을 가진 신임 정보가 있는 딕셔너리를 포함합니다.
+다른 이름을 가지고 있을 수도 있습니다 (e.g. `credentials_2`).
+필요하시면 다시 이름을 입력할 수 있습니다. 노트북 코도는 그 이름이 The notebook code assumes it will be `credentials_1`일 것으로 .
 
-## 6. Run the notebook
+## 6. 노트북을 실행합니다
 
-When a notebook is executed, what is actually happening is that each code cell in
-the notebook is executed, in order, from top to bottom.
+노트북이 실행될 때, 실제로 일어나고 있는 것은 노트북의 각 코드 셀이
+위에서 아래로 순서대로 실행되는 것입니다.
 
-Each code cell is selectable and is preceded by a tag in the left margin. The tag
-format is `In [x]:`. Depending on the state of the notebook, the `x` can be:
+각 코드 셀은 선택 가능하며 왼쪽 마진에 태그가 붙습니다. 태그 포맷은 `In [x]:`입니다. 
+노트북의 상태에 따라, `x` 는:
 
-* A blank, this indicates that the cell has never been executed.
-* A number, this number represents the relative order this code step was executed.
-* A `*`, this indicates that the cell is currently executing.
+* 빈 셀: 해당 셀이 한번도 실행되지 않았음을 나타냅니다.
+* 숫자: 숫자는 해당 코드 단계가 실행된 상대적인 순서를 나타냅니다.
+* `*`: 이것은 해당 셀이 현재 실행 중임을 나타냅니다.
 
-There are several ways to execute the code cells in your notebook:
+노트북에서 코드 셀을 실행하는 여러 방법이 있습니다:
 
-* One cell at a time.
-  * Select the cell, and then press the `Play` button in the toolbar.
-* Batch mode, in sequential order.
-  * From the `Cell` menu bar, there are several options available. For example, you
-    can `Run All` cells in your notebook, or you can `Run All Below`, that will
-    start executing from the first cell under the currently selected cell, and then
-    continue executing all cells that follow.
-* At a scheduled time.
+* 한 번에 한 셀씩 실행하기.
+  * 셀을 선택한 다음, 툴바에서 `Play` 버튼을 누릅니다.
+* 순차적으로 실행되는 배치 모드로 하기.
+  * `Cell` 메뉴바에서 선택할 수 있는 옵션이 몇 가지 있습니다. 예를 들어,
+    노트북에 `Run All` 셀을 수행할 수 있습니다, 아니면 `Run All Below`를 수행하면,
+    현재 선택된 셀 아래 첫 번째 셀에서 실행을 시작한 다음
+    그 뒤의 모든 셀을 계속하여 실행합니다.
+* 예약된 시간에 실행하기.
   * Press the `Schedule` button located in the top right section of your notebook
     panel. Here you can schedule your notebook to be executed once at some future
     time, or repeatedly at your specified interval.
+    노트북 패널의 오른쪽 상단에있는 `Schedule` 버튼을 누릅니다.
+    지정하는 시간에 한 번 실행되도록 노트북을 예약할 수 있습니다.
+    시간을 반복하거나 지정된 간격으로 반복할 수 있습니다.
 
-## 7. Analyze the results
+## 7. 결과 분석
 
 The result of running the notebook is a report which may be shared with or
 without sharing the code. You can share the code for an audience that wants
@@ -341,7 +342,7 @@ the loading and parsing we stored them as JSON documents. You'll see all
 of your replays in the *sc2replays* database and only the latest one in
 *sc2recents*.
 
-## 8. Save and share
+## 8. 저장 및 
 
 ### How to save your work:
 
