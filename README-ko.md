@@ -9,10 +9,10 @@
 
 * DSX에서 쥬피터 노트북의 생성 및 실행
 * 리플레이 파일에 액세스하기 위해 DSX Object Storage를 사용하기
-* sc2reader를 사용하여 Python 객체에 리플레이를 로딩하기
+* sc2reader를 사용하여 Python 객체에 리플레이 게임을 로딩하기
 * 결과에서 몇 가지 기본적인 리플레이 정보를 확인
-* 컨테스트 세부 정보를 사용 가능한 객체로 파싱하기
-* Bokeh 그래픽으로 컨테스트를 시각화하기
+* 해당 게임 시합의 세부 정보를 사용 가능한 객체로 파싱하기
+* Bokeh 그래픽으로 해당 게임 시합을 시각화하기
 * 처리 완료된 리플레이를 Cloudant에 저장하기
 
 이 과정은 스타크래프트 II 리플레이 파일의 처리를 통해 
@@ -69,7 +69,7 @@ IBM이 제공하는 [Data Science Experience](http://datascience.ibm.com/)에 �
   
 [![Bluemix에 배포](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
-## 3. Notebook을 생성
+## 3. 노트북을 생성합니다
 
 좌측의 메뉴 중 `My Projects`를 선택한 후 `Default Project`를 클릭합니다.
 `Add notebooks` (우측 상단에 위치)를 클릭하여 노트북을 생성합니다.
@@ -86,7 +86,7 @@ IBM이 제공하는 [Data Science Experience](http://datascience.ibm.com/)에 �
 
 #### 노트북에 리플레이를 추가합니다
 `Find and Add Data` (`10/01` 아이콘을 찾으세요)와 
-그 안에 위치한 `Files` 탭을 사용합니다. From there you can click
+그 안에 위치한 `Files` 탭을 사용합니다. 
 거기서 `browse`를 클릭하여 여러분 컴퓨터에 있는 .SC2Replay 파일을 추가합니다.
 
 > 참고:  만약 직접 플레이한 게임 리플레이 파일이 없으시면, 이 git repo를 클론해서 샘플을 사용하세요.
@@ -132,9 +132,9 @@ return StringIO(resp2.content)
 
 ![](doc/source/images/inserted_stringio.png)
 
-#### Fix-up variable names 변수 이름을 변경합니다
+#### 변수 이름을 변경합니다
 입력된 코드에는 신임 정보가 있는 메서드가 호출된 후,
-'data_1`과 같은 이름으로 변수를 설정하는 메서드를 호출합니다. 추가적인 입력을 하신다면, 
+`data_1`과 같은 이름으로 변수를 설정하는 메서드를 호출합니다. 추가적인 입력을 하신다면, 
 이 메서드를 다시 사용하여 변수를 변경할 수 있습니다 (예: `data_2`).
 
 이후 노트북에 `replay_file = data_1`를 설정할 것입니다. 그러니 입력된 코드와 맞추기 위해
@@ -142,7 +142,7 @@ return StringIO(resp2.content)
 
 ## 5. Cloudant에 연결 생성
 
-#### 데이터베이스 생성
+#### 데이터베이스를 생성
 연결을 추가하기 전에 데이터베이스를 확보해야 합니다.
 Bluemix 대시보드로 여러분이 생성한 서비스를 검색합니다.
 `sc2-cloudantNoSQLDB-service`를 찾기 위해 `Deploy to Bluemix`를 사용하셨다면,
@@ -191,9 +191,9 @@ DSX 메뉴를 사용하여 노트북을 포함하고 있는 프로젝트를 선�
 참고: 이 셀은 민감한 개인 정보를 담고 있기 때문에 hidden_cell 로 분류됩니다.
 
 #### 변수 이름을 변경합니다
-입력된 코드는 `credentials_1` 등의 이름을 가진 신임 정보가 있는 딕셔너리를 포함합니다.
-다른 이름을 가지고 있을 수도 있습니다 (e.g. `credentials_2`).
-필요하시면 다시 이름을 입력할 수 있습니다. 노트북 코도는 그 이름이 The notebook code assumes it will be `credentials_1`일 것으로 .
+입력된 코드는 `credentials_1` 등의 이름을 가진 신임 정보가 있는 Python 딕셔너리를 포함합니다.
+이 코드가 다른 이름으로 되어 있는 경우 (가령, `credentials_2`),
+이름을 다시 입력합니다. 노트북 코드는 변수 이름이 `credentials_1`로 가정합니다. 
 
 ## 6. 노트북을 실행합니다
 
@@ -217,169 +217,154 @@ DSX 메뉴를 사용하여 노트북을 포함하고 있는 프로젝트를 선�
     현재 선택된 셀 아래 첫 번째 셀에서 실행을 시작한 다음
     그 뒤의 모든 셀을 계속하여 실행합니다.
 * 예약된 시간에 실행하기.
-  * Press the `Schedule` button located in the top right section of your notebook
-    panel. Here you can schedule your notebook to be executed once at some future
-    time, or repeatedly at your specified interval.
-    노트북 패널의 오른쪽 상단에있는 `Schedule` 버튼을 누릅니다.
+  * 노트북 패널의 오른쪽 상단에있는 `Schedule` 버튼을 누릅니다.
     지정하는 시간에 한 번 실행되도록 노트북을 예약할 수 있습니다.
     시간을 반복하거나 지정된 간격으로 반복할 수 있습니다.
 
 ## 7. 결과 분석
 
-The result of running the notebook is a report which may be shared with or
-without sharing the code. You can share the code for an audience that wants
-to see how you came your conclusions. The text, code and output/charts are
-combined in a single web page. For an audience that does not want to see the
-code, you can share a web page that only shows text and output/charts.
+노트북 실행 결과는 코드를 공유 또는 공유하지 않는 리포트입니다. 여러분이 내린 결론에 
+이르기까지의 과정을 궁금해하는 분들께 코드를 공유할 수 있습니다. 텍스트, 코드, 결과/차트는 
+웹페이지에 종합적으로 보여집니다. 코드를 보길 원하지 않는 분들께는 텍스트와 결과/차트만 보여주는 
+웹페이지를 공유하면 됩니다.
 
-### Basic output
+### 기본적인 산출물 
 
-Basic replay information is printed out to show you how you can start working
-with a loaded replay. The output is also, of course, very helpful to identify
-which replay you are looking at.
+기본적인 리플레이 작업 정보로 현재 로딩된 리플레이가 어떻게 작업될 것인지 알 수 있습니다. 
+물론, 어느 리플레이 파일을 보고 계신지 구별하기에도 이 산출물이 상당히 유용합니다. 
 
 ![](doc/source/images/basic_info.png)
 
-### Data preparation
+### 데이터를 준비합니다 
 
-If you look through the code, you'll see that a lot of work went into preparing
-the data.
+코드를 살펴보면, 데이터를 준비하는데 많은 작업이 진행되었슴을 알 수 있습니다.
 
-#### Unit and building groups
+#### Unit and building groups 유닛과 빌딩 블록 
 
-List of strings were created for the _known_ units and groups. These are needed
-to recognize the event types.
+the _known_ units (이미 알고 있는 유닛들)과 그룹들에 문자열 리스트를 생성하였습니다. 
+이들은 이벤트 타입을 인식합니다. 
 
-#### Event handlers
+#### 이벤트 핸들러 
 
-Handler methods were written to process the different types of events and
-accumulate the information in the player's event list.
+다른 타입의 이벤트들을 처리하고 플레이어의 이벤트 리스트에 정보를 축적하기 위해 핸들러 메서드들이 작성되었습니다. 
 
-#### The ReplayData class
+#### ReplayData 클래스
 
-We created the `ReplayData` class to take a replay stream of bytes and process
-them with all our event handlers. The resulting player event lists are stored
-in a `ReplayData` object. The `ReplayData` class also has an `as_dict()`
-method. This method returns a Python dictionary that makes it easy to process
-the replay events with our Python code. We also use this dict to create a
-Cloudant JSON document.
+리플레이 바이트 스트림을 가져와서 이벤트 핸들러로 처리하기 위한 
+`ReplayData` 클래스를 생성하였습니다. 결과로 나오는 플레이어 이벤트 리스트는
+`ReplayData` 객체에 저장됩니다. `ReplayData` 클래스에도 `as_dict()` 메서드가 있습니다.
+이 메서드는 Python 코드로 리플레이 이벤트를 쉽게 처리하게 하는 Python 딕셔너리를 리턴합니다. 
+Cloudant JSON 문서를 만들 때에도 이 Python 딕셔너리를 사용합니다.
 
-### Visualization
+### Visualization 시각화 
 
-To visualize the replay we chose to use 2 different types of charts and
-show a side-by-side comparison of the competing players.
+리플레이를 시각화하기 위해 두 종류의 다른 차트로 양쪽 플레이어의 비교 분석을 보여줍니다. 
 
-* Nelson rules charts
-* Box plot charts
+* Nelson rules 차트
+* 박스플롯 차트
 
-We generate these charts for each of the following metrics. You will get a
-good idea of how the players are performing by comparing the trends for these
-metrics.
+다음의 측정 항목 각각에 대한 차트를 생성하겠습니다. 
+각 측정 항목별 선수들의 동향을 비교하여 어떻게 플레이하는지에 대해 손쉽게 알 수 있습니다. 
 
-* Mineral collection rate
-* Vespene collection rate
-* Active workers count
-* Supply utilization (used / available)
-* Worker/supply ratio (workers / supply used)
+* 미네랄 채취율 
+* 베스핀 가스 채취율
+* 활동 중인 일꾼 수
+* 서플라이 활용 현황 (사용 / 사용 가능)
+* 일꾼/서플라이 비율 (일꾼 / 서플라이 사용 수)
 
-#### Box plot charts
+#### 박스플롯 차트
 
-Once you get to this point, you can see that generating a box plot is quite
-easy thanks to _pandas DataFrames_ and _Bokeh BoxPlot_.
+_pandas DataFrames_ 와 _Bokeh BoxPlot_ 를 사용하면 박스플롯 차트를 손쉽게 만들 수 있습니다. 
 
-The box plot is a graphical representation of the summary statistics for the
-metric for each player. The "box" covers the range from the first to the third
-quartile. The horizontal line in the box shows the mean. The "whisker" shows
-the spread of data outside these quartiles. Outliers, if any, show up as
-markers outside the whisker lines.
+박스플롯은 각 플레이어의 측정 항목별 통계 써머리를 시각적으로 표현합니다. "박스"는 사분위수의
+첫번째부터 세번째까지 포함합니다. 박스 안의 수평선은 평균값을 나타냅니다. "위스커"는 
+이러한 사분위수 밖에 분포한 데이터의 분포를 나타냅니다. 프로게이머처럼 잘 하시는 분들은 아웃라이너로 
+"위스커"선 밖에 표시가 됩니다.
 
-For each metric, we show the players statistics side-by-side using a box plots.
+각 측정 항목 별로 플레이어들의 통계를 박스플롯으로 나란히 보여줍니다.
 
 ![](doc/source/images/box_plot_chart.png)
 
-In the above screen shot, you see side-by-side vespene per minute statistics.
-In this contest, Neeb had the advantage. In addition to the box which shows
-the quartiles and the whisker that shows the range, this example has outlier
-indicators. In many cases, there will be no outliers.
+위의 스크린샷에서는 두 플레이어의 베스핀 분당 통계를 볼 수 있습니다.
+이 게임 시합에서 Neeb이라는 플레이어가 우위를 점했습니다. 사분위수를 나타내는 박스 그리고
+분포 범위를 나타내는 위스크 외에, 이 예제에는 아웃라이너 표시가 있습니다. 
+대부분의 경우에는 그렇지 않지만요. 
 
-#### Nelson rules charts
+#### Nelson rules 차트
 
-The Nelson rules charts are not so easy. You'll notice quite a bit of code in
-helper methods to create these charts.
+Nelson rules 차트는 조금 어렵습니다. 이러한 차트를 만들려면 꽤 많은 코드에
+헬퍼 메서드를 사용해야 합니다. 
 
-The base chart is a Bokeh plotting figure with circle markers for each
-data point in the time series. This shows the metric over time for
-the player. The player charts are side-by-side to allow separate scales
-and plenty of additional annotations.
+기본 차트는 시계열로 각 데이터 포인트를 원으로 표시한 Bokeh 좌표 수치입니다.
+이는 시간 경과에 따른 플레이어의 측정 항목 수치를 보여줍니다.
+플레이어 차트는 나란히 배치되어 각각의 기준으로 판단하고, 설명을 추가할 수 있습니다. 
 
-We add horizontal lines to show our x-bar (sample mean), 1st and 2nd standard
-deviations and upper and lower control limits for each player.
+x-bar (샘플 평균), 1번째 및 2번째 표준 편차와 
+각 플레이어에 대한 상한 및 하한 제어 한계를 나타내기 위해 평행선을 추가합니다.
 
-We use our `detect_nelson_bias()` method to detect 9 or more consecutive points
-above (or below) the x-bar line. Then, using Bokeh's `add_layout()` and
-`BoxAnnotation`, we color the background green or red for ranges that show
-bias for above or below the line respectively.
+`detect_nelson_bias()` 메서드를 사용하여 x-bar 선보다  9점 또는 
+그 이상의 점수를 초과하거나 미달하는 것을 감지합니다. 그 이후, Bokeh 중 `add_layout()` 과
+`BoxAnnotation`을 사용하여, 그 선을 초과하거나 미달하는 영역의 배경을 
+녹색 또는 저색으로 표시합니다.
 
-Our `detect_nelson_trend()` method detects when 6 or more consecutive points
-are all increasing or decreasing. Using Bokeh's `add_layout()` and `Arrow`, we
-draw arrows on the chart to highlight these up or down trends.
+`detect_nelson_trend()`메서드로는 6점 또는 그 이상의 점수로 증가하거나 감소하는 것을 method detects when 6 or more consecutive points
+감지할 수 있습니다. Bokeh 중 `add_layout()` 과 `Arrow`를 사용하여, 화살표로 
+증가하거나 감소하는 추세를 차트 상 하이라이트할 수 있습니다.
 
-The result is a side-by-side comparison that is jam-packed with statistical
-analysis.
+통계적 분석으로 꽉찬 비교  결과가 도출됩니다. 
 
 ![](doc/source/images/nelson_rules_chart.png)
 
-In the above screen shot, you see the time/value hover details that you get
-with Bokeh interactive charts. Also notice the different scales and the arrows.
-In this contest, Neeb made two early pushes and got an advantage in minerals.
-If you run the notebook, you'll see other examples showing where the winner
-got the advantage.
+위의 스크린 샷처럼 time/value 정보를 Bokeh 인터랙티브 차트에서 얻을 수 있습니다. 
+또한 다른 분포도와 화살표도 주의해서 살펴보십시오. 이번 게임 시합에서는 Neeb이 
+두 번의 일찍 푸시를 했고, 미네랄에서 우위를 점했습니다.
+노트북을 실행하면 승자가 어디에서 우위를 점했는지를 알려주는 다른 예가 표시됩니다.
 
-### Stored replay documents
+### Stored replay documents 저장된 리플레이 문서
 
 You can browse your Cloudant database to see the stored replays. After all
 the loading and parsing we stored them as JSON documents. You'll see all
 of your replays in the *sc2replays* database and only the latest one in
-*sc2recents*.
+*sc2recents*. Cloudant 데이터베이스를 검색하여 저장된 리플레이를 볼 수 있습니다.
+모두 JSON 문서로 저장하고 로딩하고 파싱했기 때문입니다.
+* sc2replays * 데이터베이스에서는 모든 리플레이를 볼 수 있고, 
+* sc2recents * 에서는 최신 리플레이만 열람할 수 있습니다.
 
-## 8. 저장 및 
+## 8. 저장 및 공유
 
-### How to save your work:
+### 작업을 저장하는 방법:
 
-Under the `File` menu, there are several ways to save your notebook:
+`File` 메뉴 아래, 여러분의 노트북을 저장할 수 있는 몇몇 방법이 있습니다:
 
-* `Save` will simply save the current state of your notebook, without any version
-  information.
-* `Save Version` will save your current state of your notebook with a version tag
-  that contains a date and time stamp. Up to 10 versions of your notebook can be
-  saved, each one retrievable by selecting the `Revert To Version` menu item.
+* `Save`는 버전 정보 없이, 단순히 현재의 노트북 상태만을 저장합니다 .
+* `Save Version`는 날짜와 타임 스탬프가 있는 버전 태그와 함께 노트북의 현재 상태를 저장합니다. 
+  10개 버전까지 저장할 수 있으며, `Revert To Version` 메뉴 아이템을 선택하시면,
+  각 버전으로 돌아갑니다.
 
-### How to share your work:
+### 작업을 공유하는 방법:
 
-You can share your notebook by selecting the “Share” button located in the top
-right section of your notebook panel. The end result of this action will be a URL
-link that will display a “read-only” version of your notebook. You have several
-options to specify exactly what you want shared from your notebook:
+노트북 패널의 오른쪽 섹션 상단에 있는 “Share” 버튼을 선택하여 노트북을 공유할 수 
+있습니다. 클릭하면 노트북의 "read only" 버전을 볼 수 있는 URL 링크가 표시됩니다:
 
-* `Only text and output` will remove all code cells from the notebook view.
-* `All content excluding sensitive code cells`  will remove any code cells
-  that contain a *sensitive* tag. For example, `# @hidden_cell` is used to protect
-  your Bluemix credentials from being shared.
-* `All content, including code` displays the notebook as is.
-* A variety of `download as` options are also available in the menu.
+* `Only text and output`은 노트북 뷰에서 모든 코드 셀을 제외하고 보여줍니다.
+* `All content excluding sensitive code cells`은 노트북  뷰에서 
+  *sensitive* 태그가 달린 모든 코드 셀을 제외하고 보여줍니다tag. 예를 들면, `# @hidden_cell` 은
+  여러분의 Bluemix 신임 정보가 공유되는 것을 방지합니다.
+* `All content, including code` 은 노트북의 상태를 그대로 보여줍니다.
+* 그 외 `download as` 옵션들은 메뉴에서 찾아보실 수 있습니다.
 
-# Sample output
+# 샘플 산출물
 
-The sample_output.html in data/examples has embedded JavaScript for
-interactive Bokeh charts. Use rawgit.com to view it with the following
-link:
+data/examples 아래 위치한 sample_output.html 은 인터렉티브한 Bokeh 차트를 
+구성하기 위한 자바스크립트가 임베드되어 있습니다. 아래 링크를 이를 이용하여 보시려면 
+rawgit.com을 활용합니다:
 
-[Sample Output](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
+[샘플 산출물](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
 
-# Troubleshooting
+# 문제 해결
 
 [See DEBUGGING.md.](DEBUGGING.md)
 
-# License
+# 라이센스
 
 [Apache 2.0](LICENSE)
