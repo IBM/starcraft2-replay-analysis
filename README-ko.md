@@ -288,7 +288,7 @@ _pandas DataFrames_ 와 _Bokeh BoxPlot_ 를 사용하면 박스플롯 차트를
 위의 스크린샷에서는 두 플레이어의 베스핀 분당 통계를 볼 수 있습니다.
 이 게임 시합에서 Neeb이라는 플레이어가 우위를 점했습니다. 사분위수를 나타내는 박스 그리고
 분포 범위를 나타내는 위스크 외에, 이 예제에는 아웃라이너 표시가 있습니다. 
-대부분의 경우에는 그렇지 않지만요. 
+대부분의 경우에는 아웃라이너 표시는 좀처럼 보기 드뭅니다. 
 
 #### Nelson rules 차트
 
@@ -305,9 +305,9 @@ x-bar (샘플 평균), 1번째 및 2번째 표준 편차와
 `detect_nelson_bias()` 메서드를 사용하여 x-bar 선보다  9점 또는 
 그 이상의 점수를 초과하거나 미달하는 것을 감지합니다. 그 이후, Bokeh 중 `add_layout()` 과
 `BoxAnnotation`을 사용하여, 그 선을 초과하거나 미달하는 영역의 배경을 
-녹색 또는 저색으로 표시합니다.
+녹색 또는 적색으로 표시합니다.
 
-`detect_nelson_trend()`메서드로는 6점 또는 그 이상의 점수로 증가하거나 감소하는 것을 method detects when 6 or more consecutive points
+`detect_nelson_trend()`메서드로는 6점 또는 그 이상의 점수로 증가하거나 감소하는 것을
 감지할 수 있습니다. Bokeh 중 `add_layout()` 과 `Arrow`를 사용하여, 화살표로 
 증가하거나 감소하는 추세를 차트 상 하이라이트할 수 있습니다.
 
@@ -322,13 +322,10 @@ x-bar (샘플 평균), 1번째 및 2번째 표준 편차와
 
 ### Stored replay documents 저장된 리플레이 문서
 
-You can browse your Cloudant database to see the stored replays. After all
-the loading and parsing we stored them as JSON documents. You'll see all
-of your replays in the *sc2replays* database and only the latest one in
-*sc2recents*. Cloudant 데이터베이스를 검색하여 저장된 리플레이를 볼 수 있습니다.
+Cloudant 데이터베이스를 검색하여 저장된 리플레이를 볼 수 있습니다.
 모두 JSON 문서로 저장하고 로딩하고 파싱했기 때문입니다.
-* sc2replays * 데이터베이스에서는 모든 리플레이를 볼 수 있고, 
-* sc2recents * 에서는 최신 리플레이만 열람할 수 있습니다.
+*sc2replays* 데이터베이스에서는 모든 리플레이를 볼 수 있고, 
+*sc2recents* 에서는 최신 리플레이만 열람할 수 있습니다.
 
 ## 8. 저장 및 공유
 
