@@ -1,9 +1,9 @@
 ﻿# 使用 Jupyter Notebook 分析《星际争霸 II》录像
 
-在这个 developer journey 中，我们将使用 Jupyter Notebook 分析
+在这个 Code Pattern 中，我们将使用 Jupyter Notebook 分析
 《星际争霸 II》录像回放并提取重要洞察。
 
-读者学习完这个 journey ，将会掌握如何：
+读者学习完这个 Code Pattern ，将会掌握如何：
 
 * 在 DSX 中创建并运行 Jupyter Notebook。
 * 使用 DSX Object Storage 访问录像回放文件。
@@ -13,7 +13,7 @@
 * 使用 Bokeh 图形可视化比赛结果。
 * 将处理后的录像回放存储在 Cloudant 中。
 
-本 journey 目标读者是需要处理《星际争霸 II》录像回放文件
+这个 Code Pattern 目标读者是需要处理《星际争霸 II》录像回放文件
 并构建强大的数据可视化的应用程序开发人员。
 
 ![](doc/source/images/architecture.png)
@@ -42,7 +42,7 @@
 
 # 步骤
 
-按照这些步骤来设置并开始学习本 journey 。下面将详细介绍
+按照这些步骤来设置并开始这个 Code Pattern。下面将详细介绍
 这些步骤。
 
 1.[注册 Data Science Experience](#1-sign-up-for-the-data-science-experience)
@@ -104,7 +104,7 @@
 
 ![](doc/source/images/insert_to_code.png)
 
-备注：此单元被标记为 hidden_cell，因为它包含
+** 备注：** 此单元被标记为 hidden_cell，因为它包含
 敏感凭证。
 
 #### 修复代码！
