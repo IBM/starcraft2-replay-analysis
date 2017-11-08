@@ -104,7 +104,7 @@
 
 ![](doc/source/images/insert_to_code.png)
 
-** 备注：** 此单元被标记为 hidden_cell，因为它包含
+备注： 此单元被标记为 hidden_cell，因为它包含
 敏感凭证。
 
 #### 修复代码！
