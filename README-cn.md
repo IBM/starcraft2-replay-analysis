@@ -1,4 +1,5 @@
-﻿# 使用 Jupyter Notebook 分析《星际争霸 II》录像
+﻿*阅读本文的其他语言版本：[English](README.md)。*
+ # 使用 Jupyter Notebook 分析《星际争霸 II》录像
 
 在这个 Code Pattern 中，我们将使用 Jupyter Notebook 分析
 《星际争霸 II》录像回放并提取重要洞察。
