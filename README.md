@@ -1,3 +1,4 @@
+*Read this in other languages: [中国](README-cn.md).*
 # StarCraft II Replay Analysis with Jupyter Notebooks
 
 In this developer journey we will use Jupyter notebooks to analyze
