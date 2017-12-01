@@ -8,7 +8,7 @@ to start over from the top if anything seems to be missing.
 
 Setting credentials
 -------------------
-Credentials need to be added to the notebook to access some Bluemix services.
+Credentials need to be added to the notebook to access some IBM Cloud services.
 The credentials are set near the top of the notebook to make it
 more obvious that they need to be set and also to make it more obvious that
 you will be saving a notebook with credentials. You should not share your
