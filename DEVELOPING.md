@@ -31,7 +31,7 @@ you've verified that the pip install was successful.
 
 > **Note**:  After running a cell with pip install, you may need to restart
 the kernel and then run the cells again from the top.
- 
+
 Importing libraries
 -------------------
 Import and some setup of libraries is done near the top. This is another
@@ -60,12 +60,12 @@ The @hidden_cell magic is used to mark the credentials cells as "sensitive".
 If you do any rearranging of sensitive code, remember to identify sensitive
 cells with @hidden_cell.
 
-#### Ending with a semi-colon 
+#### Ending with a semi-colon
 
 Statements in a notebook can end with a semi-colon. It looks like
 bad Python, but it is actually a trick to prevent these statements from
 showing their result in the output.
-   
+
 #### if DEBUG
 
 A DEBUG boolean and 'if' statements can be used throughout the notebook
@@ -74,7 +74,7 @@ handy in the future, but are not something you want to share in the final
 output.
 
 #### %%capture captured_io
- 
+
 "%%capture captured_io" magic can be used to capture the output when nothing
 else works. You can use that to hide the "!pip install" output and add a cell
 right after it that will print the captured output if DEBUG is True.

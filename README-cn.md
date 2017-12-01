@@ -65,7 +65,7 @@
 或跟随这些链接使用 Bluemix 用户界面来创建该服务。
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
-  
+
 [![部署到 Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3.创建 notebook
@@ -220,7 +220,7 @@ return StringIO(resp2.content)
     这将从当前选定单元下方的第一个单元开始执行，然后
     继续执行后面的所有单元。
 * 按计划的时间执行。
-  * 按下位于 notebook 面板右上部分的 `Schedule` 
+  * 按下位于 notebook 面板右上部分的 `Schedule`
     按钮。在这里可以计划在未来的某个时刻执行一次 notebook，
     或者按指定的间隔重复执行。
 
@@ -259,9 +259,9 @@ return StringIO(resp2.content)
 
 我们创建了 `ReplayData` 类来获取录像字节流，
 并使用所有事件处理函数来处理它们。最终的玩家事件列表存储在
-一个 `ReplayData` 对象中。`ReplayData` 类也有一个 `as_dict()` 
-方法。此方法返回一个 Python 字典，以方便使用我们的 
-Python 代码处理重放事件。我们也会使用此字典创建一个 
+一个 `ReplayData` 对象中。`ReplayData` 类也有一个 `as_dict()`
+方法。此方法返回一个 Python 字典，以方便使用我们的
+Python 代码处理重放事件。我们也会使用此字典创建一个
 Cloudant JSON 文档。
 
 ### 可视化
@@ -315,7 +315,7 @@ Nelson 规则图不那么容易绘制。您会注意到，在帮助器方法中
 我们添加了水平线来显示每位玩家的算数平均数（x-bar，也即样本均值）、第一个和第二个
 标准偏差，以及控制上限和下限。
 
-我们使用 `detect_nelson_bias()` 方法检测算数平均数上方（或下方）的 
+我们使用 `detect_nelson_bias()` 方法检测算数平均数上方（或下方）的
 9 个或更多连续点。然后，通过使用 Bokeh 的 `add_layout()` 和
 `BoxAnnotation`，将背景绘制为绿色或红色，分别表示在该线
 上方或下方出现偏差的范围。
@@ -338,8 +338,8 @@ Nelson 规则图不那么容易绘制。您会注意到，在帮助器方法中
 ### 存储的录像文档
 
 可以浏览您的 Cloudant 数据库来查看存储的录像。执行所有
-加载和解析后，我们将它们存储为了 JSON 文档。您将会在 
-*sc2replays* 数据库中看到所有录像，而在 
+加载和解析后，我们将它们存储为了 JSON 文档。您将会在
+*sc2replays* 数据库中看到所有录像，而在
 *sc2recents* 中仅能看到最新的录像。
 
 ## 8.保存和共享
@@ -356,14 +356,14 @@ Nelson 规则图不那么容易绘制。您会注意到，在帮助器方法中
 
 ### 如何共享工作：
 
-要共享 notebook，可以选择 notebook 面板右上部分中的 
+要共享 notebook，可以选择 notebook 面板右上部分中的
 Share 按钮。该操作的最终结果是一个 URL
 链接，其中将显示您的 notebook 的“只读”版本。可通过多种
 选择来准确指定想共享 notebook 中的哪些内容：
 
 * `Only text and output` 将删除 notebook 视图中的所有代码单元。
 * `All content excluding sensitive code cells` 将删除任何包含 *sensitive* 标记的
-  代码单元。例如，`# @hidden_cell` 用于保护您的 
+  代码单元。例如，`# @hidden_cell` 用于保护您的
   Bluemix 凭证不被共享。
 * `All content, including code` 按原样显示 notebook。
 * 菜单中还有各种不同的 `download as` 选项。

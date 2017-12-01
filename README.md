@@ -65,7 +65,7 @@ Create the following Bluemix service by clicking the **Deploy to Bluemix**
 button or by following the links to use the Bluemix UI and create it.
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
-  
+
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3. Create the notebook
