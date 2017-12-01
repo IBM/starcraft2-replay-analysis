@@ -25,7 +25,7 @@
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter)：Cloudant NoSQL DB 是一个全面托管的数据层，专为利用灵活 JSON 模式的现代 Web 和移动应用程序而设计。
 
-* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter)：一个 Bluemix 服务，提供非结构化的云数据存储来构建和交付富有成本效益的、高度可靠的、能迅速投入市场的应用程序和服务。
+* [IBM Cloud Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter)：一个 Bluemix 服务，提供非结构化的云数据存储来构建和交付富有成本效益的、高度可靠的、能迅速投入市场的应用程序和服务。
 
 ## 精选技术
 
@@ -47,7 +47,7 @@
 这些步骤。
 
 1.[注册 Data Science Experience](#1-sign-up-for-the-data-science-experience)
-2.[创建 Bluemix 服务](#2-create-bluemix-services)
+2.[创建 IBM Cloud 服务](#2-create-bluemix-services)
 3.[创建 notebook](#3-create-the-notebook)
 4.[添加录像文件](#4-add-the-replay-file)
 5.[与 Cloudant 建立连接](#5-create-a-connection-to-cloudant)
@@ -57,16 +57,16 @@
 
 ## 1.注册 Data Science Experience
 
-注册 IBM [Data Science Experience](http://datascience.ibm.com/)。注册 Data Science Experience，这会在您的 Bluemix 帐户中创建两个服务：``DSX-Spark`` 和 ``DSX-ObjectStore``。
+注册 IBM [Data Science Experience](http://datascience.ibm.com/)。注册 Data Science Experience，这会在您的 IBM Cloud 帐户中创建两个服务：``DSX-Spark`` 和 ``DSX-ObjectStore``。
 
-## 2.创建 Bluemix 服务
+## 2.创建 IBM Cloud 服务
 
-单击 **Deploy to Bluemix** 按钮创建下面这个 Bluemix 服务，
-或跟随这些链接使用 Bluemix 用户界面来创建该服务。
+单击 **Deploy to IBM Cloud** 按钮创建下面这个 Bluemix 服务，
+或跟随这些链接使用 IBM Cloud 用户界面来创建该服务。
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
   
-[![部署到 Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+[![部署到 IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3.创建 notebook
 
@@ -144,9 +144,9 @@ return StringIO(resp2.content)
 
 #### 创建一个数据库
 在添加连接之前，您需要一个数据库。
-使用 Bluemix 仪表板找到您创建的服务。
-如果使用了 `Deploy to Bluemix`，则查找 `sc2-cloudantNoSQLDB-service`。
-如果直接在 Bluemix 中创建了该服务，您可能挑选了一个
+使用 IBM Cloud 仪表板找到您创建的服务。
+如果使用了 `Deploy to IBM Cloud`，则查找 `sc2-cloudantNoSQLDB-service`。
+如果直接在 IBM Cloud 中创建了该服务，您可能挑选了一个
 不同的名称，或者使用了默认名称 `Cloudant NoSQL DB-` 和一个随机
 后缀。
 
@@ -364,7 +364,7 @@ Share 按钮。该操作的最终结果是一个 URL
 * `Only text and output` 将删除 notebook 视图中的所有代码单元。
 * `All content excluding sensitive code cells` 将删除任何包含 *sensitive* 标记的
   代码单元。例如，`# @hidden_cell` 用于保护您的 
-  Bluemix 凭证不被共享。
+  IBM Cloud 凭证不被共享。
 * `All content, including code` 按原样显示 notebook。
 * 菜单中还有各种不同的 `download as` 选项。
 
