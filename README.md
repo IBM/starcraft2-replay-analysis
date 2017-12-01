@@ -25,7 +25,7 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
 
-* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): A Bluemix service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
+* [IBM Cloud Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): A Bluemix service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
 
 ## Featured technologies
 
@@ -47,7 +47,7 @@ Follow these steps to setup and run this developer journey. The steps are
 described in detail below.
 
 1. [Sign up for the Data Science Experience](#1-sign-up-for-the-data-science-experience)
-1. [Create Bluemix services](#2-create-bluemix-services)
+1. [Create IBM Cloud services](#2-create-bluemix-services)
 1. [Create the notebook](#3-create-the-notebook)
 1. [Add the replay file](#4-add-the-replay-file)
 1. [Create a connection to Cloudant](#5-create-a-connection-to-cloudant)
@@ -57,16 +57,16 @@ described in detail below.
 
 ## 1. Sign up for the Data Science Experience
 
-Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By signing up for the Data Science Experience, two services: ``DSX-Spark`` and ``DSX-ObjectStore`` will be created in your Bluemix account.
+Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By signing up for the Data Science Experience, two services: ``DSX-Spark`` and ``DSX-ObjectStore`` will be created in your IBM Cloud account.
 
-## 2. Create Bluemix services
+## 2. Create IBM Cloud services
 
-Create the following Bluemix service by clicking the **Deploy to Bluemix**
-button or by following the links to use the Bluemix UI and create it.
+Create the following IBM Cloud service by clicking the **Deploy to Bluemix**
+button or by following the links to use the IBM Cloud UI and create it.
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
   
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3. Create the notebook
 
@@ -144,9 +144,9 @@ fix the variable name `data_1` to match your inserted code.
 
 #### Create a database
 Before you an add a connection, you need a database.
-Use your Bluemix dashboard to find the service you created.
-If you used `Deploy to Bluemix` look for `sc2-cloudantNoSQLDB-service`.
-If you created the service directly in Bluemix you may have picked a
+Use your IBM Cloud dashboard to find the service you created.
+If you used `Deploy to IBM Cloud` look for `sc2-cloudantNoSQLDB-service`.
+If you created the service directly in IBM Cloud you may have picked a
 different name or used the default name of `Cloudant NoSQL DB-` with a random
 suffix.
 
@@ -364,7 +364,7 @@ options to specify exactly what you want shared from your notebook:
 * `Only text and output` will remove all code cells from the notebook view.
 * `All content excluding sensitive code cells`  will remove any code cells
   that contain a *sensitive* tag. For example, `# @hidden_cell` is used to protect
-  your Bluemix credentials from being shared.
+  your IBM Cloud credentials from being shared.
 * `All content, including code` displays the notebook as is.
 * A variety of `download as` options are also available in the menu.
 
