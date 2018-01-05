@@ -1,6 +1,6 @@
 # Jupyter Notebook으로 하는 스타크래프트 II 리플레이 분석
 
-*다른 언어로 보기: [English](README.md).*
+*다른 언어로 보기: [English](README.md), [中国](README-cn.md).*
 
 이 개발 과정에서는 Jupyter Notebook을 사용하여
 스타크래프트 II 리플레이를 분석하여 흥미로운 인사이트를 이끌어냅니다.
