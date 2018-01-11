@@ -1,5 +1,6 @@
 Tips for Developers
 ===================
+*Read this in other languages: [한국어](DEVELOPING-ko.md)*
 
 The notebook is designed to be run top-down. Settings in early cells are used
 in later cells. Some variables are also cleared to free up memory. So, although

@@ -1,5 +1,7 @@
 # StarCraft II Replay Analysis with Jupyter Notebooks
 
+*Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md).*
+
 In this developer journey we will use Jupyter notebooks to analyze
 StarCraft II replays and extract interesting insights.
 
