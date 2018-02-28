@@ -1,12 +1,11 @@
-*Read this in other languages: [中国](README-cn.md).*
 # StarCraft II Replay Analysis with Jupyter Notebooks
 
 *Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md).*
 
-In this developer journey we will use Jupyter notebooks to analyze
+In this Code Pattern we will use Jupyter notebooks to analyze
 StarCraft II replays and extract interesting insights.
 
-When the reader has completed this journey, they will understand how to:
+When the reader has completed this Code Pattern, they will understand how to:
 
 * Create and run a Jupyter notebook in DSX.
 * Use DSX Object Storage to access a replay file.
@@ -16,10 +15,17 @@ When the reader has completed this journey, they will understand how to:
 * Visualize the contest with Bokeh graphics.
 * Store the processed replay in Cloudant.
 
-The intended audience for this journey is application developers who
+The intended audience for this Code Pattern is application developers who
 need to process StarCraft II replay files and build powerful visualizations.
 
 ![](doc/source/images/architecture.png)
+
+## Flow
+
+1. The Developer creates a Jupyter notebook from the included starcraft2_replay_analysis.ipynb file
+2. A Starcraft replay file is loaded into IBM Cloud Object Storage
+3. The Object is loaded into the Jupyer notebook
+4. Processed replay is loaded into Cloudant database for storage
 
 ## Included components
 
@@ -27,7 +33,7 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
 
-* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): A Bluemix service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
+* [IBM Cloud Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): An IBM Cloud service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
 
 ## Featured technologies
 
@@ -45,11 +51,11 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 # Steps
 
-Follow these steps to setup and run this developer journey. The steps are
+Follow these steps to setup and run this developer Code Pattern. The steps are
 described in detail below.
 
 1. [Sign up for the Data Science Experience](#1-sign-up-for-the-data-science-experience)
-1. [Create Bluemix services](#2-create-bluemix-services)
+1. [Create IBM Cloud services](#2-create-ibm-cloud-services)
 1. [Create the notebook](#3-create-the-notebook)
 1. [Add the replay file](#4-add-the-replay-file)
 1. [Create a connection to Cloudant](#5-create-a-connection-to-cloudant)
@@ -59,22 +65,21 @@ described in detail below.
 
 ## 1. Sign up for the Data Science Experience
 
-Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By signing up for the Data Science Experience, two services: ``DSX-Spark`` and ``DSX-ObjectStore`` will be created in your Bluemix account.
+Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By signing up for the Data Science Experience, two services: ``DSX-Spark`` and ``DSX-ObjectStore`` will be created in your IBM Cloud account.
 
-## 2. Create Bluemix services
+## 2. Create IBM Cloud services
 
-Create the following Bluemix service by clicking the **Deploy to Bluemix**
-button or by following the links to use the Bluemix UI and create it.
+Create the following IBM Cloud service by clicking the **Deploy to IBM Cloud**
+button or by following the links to use the IBM Cloud UI and create it.
 
   * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3. Create the notebook
 
-Use the menu on the left to select `My Projects` and then `Default Project`.
-Click on `Add notebooks` (upper right) to create a notebook.
-
+* From the top menu `Projects` click one of your projects, or choose from `Recently updated projects` or `+``New project`.
+* Click on `+``Add to project` (upper right) -> `notebook`.
 * Select the `From URL` tab.
 * Enter a name for the notebook.
 * Optionally, enter a description for the notebook.
@@ -86,12 +91,12 @@ Click on `Add notebooks` (upper right) to create a notebook.
 ## 4. Add the replay file
 
 #### Add the replay to the notebook
-Use `Find and Add Data` (look for the `10/01` icon)
+Use `Data` (look for the `10/01` icon)
 and its `Files` tab. From there you can click
 `browse` and add a .SC2Replay file from your computer.
 
 > Note:  If you don't have your own replays, you can get our example by cloning
-this git repo. Look in the `data/example_input` directory.
+this git repo. Use the `data/example_input/king_sejong_station_le.sc2replay` file.
 
 ![](doc/source/images/add_file.png)
 
@@ -103,52 +108,29 @@ at the top or anywhere before `Load the replay`.
 #### Insert to code
 After you add the file, use its `Insert to code` drop-down menu.
 Make sure your active cell is the empty one created earlier.
-Select `Insert StringIO object` from the drop-down menu.
+Select `Insert StreamingBody object` from the drop-down menu.
 
 ![](doc/source/images/insert_to_code.png)
 
 Note: This cell is marked as a hidden_cell because it contains
 sensitive credentials.
 
-#### Fix the code!
-
-We don't want to treat the replay as unicode text. We want the bytes.
-In the inserted code, change this import:
-```python
-from io import StringIO
-```
-To use StringIO like this:
-```python
-from StringIO import StringIO
-```
-
-Change this return line:
-```python
-return StringIO(resp2.text)
-```
-To use the "content" bytes like this:
-```python
-return StringIO(resp2.content)
-```
-
-![](doc/source/images/inserted_stringio.png)
-
 #### Fix-up variable names
 The inserted code includes a generated method with credentials and then calls
-the generated method to set a variable with a name like `data_1`. If you do
+the generated method to set a variable with a name like `streaming_body_1`. If you do
 additional inserts, the method can be re-used and the variable will change
-(e.g. `data_2`).
+(e.g. `streaming_body_2`).
 
-Later in the notebook, we set `replay_file = data_1`. So you might need to
-fix the variable name `data_1` to match your inserted code.
+Later in the notebook, we set `replay_file = streaming_body_1`. So you might need to
+fix the variable name `streaming_body_1` to match your inserted code.
 
 ## 5. Create a connection to Cloudant
 
 #### Create a database
 Before you an add a connection, you need a database.
-Use your Bluemix dashboard to find the service you created.
-If you used `Deploy to Bluemix` look for `sc2-cloudantNoSQLDB-service`.
-If you created the service directly in Bluemix you may have picked a
+Use your IBM Cloud dashboard to find the service you created.
+If you used `Deploy to IBM Cloud` look for `sc2-cloudantNoSQLDB-service`.
+If you created the service directly in IBM Cloud you may have picked a
 different name or used the default name of `Cloudant NoSQL DB-` with a random
 suffix.
 
@@ -163,39 +145,34 @@ name, you can use any name. We just need any database before creating
 a connection.
 
 #### Add a new connection to the project
-Use the DSX menu to select the project containing the notebook.
 
-Use `Find and Add Data` (look for the `10/01` icon)
+* Use the DSX menu to select the project containing the notebook.
+
+* Click on `+``Add to project` -> `Connections`
+* Choose your Cloudant DB (i.e. `sc2-cloudantNoSQLDB-service`)
+* Use the `Data` (look for the `10/01` icon)
 and its `Connections` tab. From there you can click `Create Connection`.
 
-![](doc/source/images/create_connection.png)
-
-Give the connection a name and optionally a description.
-Under `Service Category` select the `Data Service` button.
-Use the `Target service instance` drop-down and select your Cloudant NoSQL DB instance
-(e.g., `sc2-cloudantNoSQLDB-service`).
-
-![](doc/source/images/add_cloudant_conn.png)
-
-Make sure the connection you created is enabled with a checkbox in `Connections`.
-
 #### Create an empty cell
-Use the `+` button above to create an empty cell to hold
+
+* Use the `+` button above to create an empty cell to hold
 the inserted code and credentials. You can put this cell
 at the top or anywhere before `Storing replay files`.
 
 #### Add the Cloudant credentials to the notebook
-Use `Find and Add Data` (look for the `10/01` icon)
+
+* Use `Data` (look for the `10/01` icon)
 and its `Connections` tab. You should see the
 connection name created earlier.
 Make sure your active cell is the empty one created earlier.
-Select `Insert to code` (below your connection name).
+* Select `Insert to code` (below your connection name).
 
 ![](doc/source/images/insert_cloudant_conn.png)
 
 Note: This cell is marked as a `hidden_cell` because it contains sensitive credentials.
 
 #### Fix-up variable names
+
 The inserted code includes a dictionary with credentials assigned to a variable
 with a name like `credentials_1`. It may have a different name (e.g. `credentials_2`).
 Rename it or reassign it if needed. The notebook code assumes it will be `credentials_1`.
@@ -366,7 +343,7 @@ options to specify exactly what you want shared from your notebook:
 * `Only text and output` will remove all code cells from the notebook view.
 * `All content excluding sensitive code cells`  will remove any code cells
   that contain a *sensitive* tag. For example, `# @hidden_cell` is used to protect
-  your Bluemix credentials from being shared.
+  your IBM Cloud credentials from being shared.
 * `All content, including code` displays the notebook as is.
 * A variety of `download as` options are also available in the menu.
 
