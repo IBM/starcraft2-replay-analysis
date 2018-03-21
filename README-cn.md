@@ -7,7 +7,7 @@
 读者学习完这个 Code Pattern ，将会掌握如何：
 
 * 在 Watson Studio 中创建并运行 Jupyter Notebook。
-* 使用 Watson Studio Object Storage 访问录像回放文件。
+* 使用 Object Storage 访问录像回放文件。
 * 使用 sc2reader 将录像回放加载到 Python 对象中。
 * 在结果中检查一些基本的录像回放信息。
 * 将比赛细节解析为一个实用对象。

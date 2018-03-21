@@ -8,7 +8,7 @@ StarCraft II replays and extract interesting insights.
 When the reader has completed this Code Pattern, they will understand how to:
 
 * Create and run a Jupyter notebook in Watson Studio.
-* Use Watson Studio Object Storage to access a replay file.
+* Use Object Storage to access a replay file.
 * Use sc2reader to load a replay into a Python object.
 * Examine some of the basic replay information in the result.
 * Parse the contest details into a usable object.
