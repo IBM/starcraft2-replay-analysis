@@ -7,7 +7,7 @@
 
 이 과정을 마치면 다음의 방법을 배울 수 있습니다:
 
-* Watson Studio (IBM Watson Studio) 에서 Jupyter 노트북의 생성 및 실행
+* Watson Studio 에서 Jupyter 노트북의 생성 및 실행
 * 리플레이 파일에 액세스하기 위해 Object Storage를 사용하기
 * sc2reader를 사용하여 Python 객체에 리플레이 게임을 로딩하기
 * 결과에서 몇 가지 기본적인 리플레이 정보를 확인
