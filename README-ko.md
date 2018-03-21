@@ -58,7 +58,7 @@
 
 ## 1. Watson Studio에 가입
 
-IBM이 제공하는 [Watson Studio](http://datascience.ibm.com/)에 가입합니다. Watson Studio에 가입하면, 두 개의 서비스: ``Watson Studio-Spark`` 와 ``Watson Studio-ObjectStore`` 가 여러분의 Bluemix 계정에 생성됩니다.
+IBM이 제공하는 [Watson Studio](http://datascience.ibm.com/)에 가입합니다. Watson Studio에 가입하면, 두 개의 서비스: ``Apache Spark`` 와 ``Object Storage`` 가 여러분의 Bluemix 계정에 생성됩니다.
 
 ## 2. Bluemix 서비스 생성
 

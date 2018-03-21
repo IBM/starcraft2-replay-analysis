@@ -57,7 +57,7 @@
 
 ## 1.注册 Watson Studio
 
-注册 IBM [Watson Studio](http://datascience.ibm.com/)。注册 Watson Studio，这会在您的 Bluemix 帐户中创建两个服务：``Watson Studio-Spark`` 和 ``Watson Studio-ObjectStore``。
+注册 IBM [Watson Studio](http://datascience.ibm.com/)。注册 Watson Studio，这会在您的 Bluemix 帐户中创建两个服务：``Apache Spark`` 和 ``Object Storage``。
 
 ## 2.创建 Bluemix 服务
 
