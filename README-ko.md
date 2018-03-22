@@ -22,7 +22,7 @@
 
 ## 구성 요소
 
-* [IBM Watson Studio](https://www.ibm.com/bs-en/marketplace/data-science-experience): managed Spark와 같은 IBM 서비스를 포함하는 사전 구성된 협업 환경에서 RStudio, Jupyter 및 Python을 사용하여 데이터를 분석합니다.
+* [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): managed Spark와 같은 IBM 서비스를 포함하는 사전 구성된 협업 환경에서 RStudio, Jupyter 및 Python을 사용하여 데이터를 분석합니다.
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB는 최신 웹 및 모바일 애플리케이션을 위해 설계되어 유연한 JSON 스키마를 사용하는 완전 관리형 데이터 레이어입니다.
 
@@ -47,7 +47,7 @@
 이 개발 과정을 설정하고 실행하려면 다음의 단계를 따르십시오.
 아래에 자세히 설명되어 있습니다.
 
-1. [Watson Studio에 가입](#1-data-science-experience에-가입)
+1. [Watson Studio에 가입](#1-watson-studio-가입)
 1. [Bluemix 서비스 생성](#2-bluemix-서비스-생성)
 1. [노트북을 생성합니다](#3-노트북을-생성합니다)
 1. [리플레이 파일 추가](#4-리플레이-파일-추가)
@@ -58,7 +58,7 @@
 
 ## 1. Watson Studio에 가입
 
-IBM이 제공하는 [Watson Studio](http://datascience.ibm.com/)에 가입합니다. Watson Studio에 가입하면, 두 개의 서비스: ``Apache Spark`` 와 ``Object Storage`` 가 여러분의 Bluemix 계정에 생성됩니다.
+IBM이 제공하는 [Watson Studio](http://dataplatform.ibm.com/)에 가입합니다. Watson Studio에 가입하면, 두 개의 서비스: ``Apache Spark`` 와 ``Object Storage`` 가 여러분의 Bluemix 계정에 생성됩니다.
 
 ## 2. Bluemix 서비스 생성
 
