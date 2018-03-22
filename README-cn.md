@@ -21,7 +21,7 @@
 
 ## 包含的组件
 
-* [IBM Watson Studio](https://www.ibm.com/bs-en/marketplace/data-science-experience)：在一个包含 IBM 插件（比如托管的 Spark）的已配置好的协作环境中，使用 RStudio、Jupyter 和 Python 分析数据。
+* [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)：在一个包含 IBM 插件（比如托管的 Spark）的已配置好的协作环境中，使用 RStudio、Jupyter 和 Python 分析数据。
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter)：Cloudant NoSQL DB 是一个全面托管的数据层，专为利用灵活 JSON 模式的现代 Web 和移动应用程序而设计。
 
@@ -46,7 +46,7 @@
 按照这些步骤来设置并开始这个 Code Pattern。下面将详细介绍
 这些步骤。
 
-1.[注册 Watson Studio](#1-sign-up-for-the-data-science-experience)
+1.[注册 Watson Studio](#1-sign-up-for-watson-studio)
 2.[创建 Bluemix 服务](#2-create-bluemix-services)
 3.[创建 notebook](#3-create-the-notebook)
 4.[添加录像文件](#4-add-the-replay-file)
@@ -57,7 +57,7 @@
 
 ## 1.注册 Watson Studio
 
-注册 IBM [Watson Studio](http://datascience.ibm.com/)。注册 Watson Studio，这会在您的 Bluemix 帐户中创建两个服务：``Apache Spark`` 和 ``Object Storage``。
+注册 IBM [Watson Studio](http://dataplatform.ibm.com/)。注册 Watson Studio，这会在您的 Bluemix 帐户中创建两个服务：``Apache Spark`` 和 ``Object Storage``。
 
 ## 2.创建 Bluemix 服务
 
