@@ -6,8 +6,8 @@
 
 读者学习完这个 Code Pattern ，将会掌握如何：
 
-* 在 DSX 中创建并运行 Jupyter Notebook。
-* 使用 DSX Object Storage 访问录像回放文件。
+* 在 Watson Studio 中创建并运行 Jupyter Notebook。
+* 使用 Object Storage 访问录像回放文件。
 * 使用 sc2reader 将录像回放加载到 Python 对象中。
 * 在结果中检查一些基本的录像回放信息。
 * 将比赛细节解析为一个实用对象。
@@ -21,7 +21,7 @@
 
 ## 包含的组件
 
-* [IBM Data Science Experience](https://www.ibm.com/bs-en/marketplace/data-science-experience)：在一个包含 IBM 插件（比如托管的 Spark）的已配置好的协作环境中，使用 RStudio、Jupyter 和 Python 分析数据。
+* [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)：在一个包含 IBM 插件（比如托管的 Spark）的已配置好的协作环境中，使用 RStudio、Jupyter 和 Python 分析数据。
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter)：Cloudant NoSQL DB 是一个全面托管的数据层，专为利用灵活 JSON 模式的现代 Web 和移动应用程序而设计。
 
@@ -46,7 +46,7 @@
 按照这些步骤来设置并开始这个 Code Pattern。下面将详细介绍
 这些步骤。
 
-1.[注册 Data Science Experience](#1-sign-up-for-the-data-science-experience)
+1.[注册 Watson Studio](#1-sign-up-for-watson-studio)
 2.[创建 Bluemix 服务](#2-create-bluemix-services)
 3.[创建 notebook](#3-create-the-notebook)
 4.[添加录像文件](#4-add-the-replay-file)
@@ -55,9 +55,9 @@
 7.[分析结果](#7-analyze-the-results)
 8.[保存并共享结果](#8-save-and-share)
 
-## 1.注册 Data Science Experience
+## 1.注册 Watson Studio
 
-注册 IBM [Data Science Experience](http://datascience.ibm.com/)。注册 Data Science Experience，这会在您的 Bluemix 帐户中创建两个服务：``DSX-Spark`` 和 ``DSX-ObjectStore``。
+注册 IBM [Watson Studio](http://dataplatform.ibm.com/)。注册 Watson Studio，这会在您的 Bluemix 帐户中创建两个服务：``Apache Spark`` 和 ``Object Storage``。
 
 ## 2.创建 Bluemix 服务
 
@@ -161,7 +161,7 @@ return StringIO(resp2.content)
 连接。
 
 #### 将一个新连接添加到项目中
-使用 DSX 菜单选择包含该 notebook 的项目。
+使用 Watson Studio 菜单选择包含该 notebook 的项目。
 
 使用 `Find and Add Data`（查找 `10/01` 图标）
 和它的 `Connections` 选项卡。从这里，可以单击 `Create Connection`。

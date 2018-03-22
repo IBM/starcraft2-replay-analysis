@@ -2,13 +2,14 @@
 
 *Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md).*
 
-In this Code Pattern we will use Jupyter notebooks to analyze
-StarCraft II replays and extract interesting insights.
+> Data Science Experience is now Watson Studio. Although some images in this code pattern may show the service as Data Science Experience, the steps and processes will still work.
+
+In this Code Pattern we will use Jupyter notebooks to analyze StarCraft II replays and extract interesting insights.
 
 When the reader has completed this Code Pattern, they will understand how to:
 
-* Create and run a Jupyter notebook in DSX.
-* Use DSX Object Storage to access a replay file.
+* Create and run a Jupyter notebook in Watson Studio.
+* Use Object Storage to access a replay file.
 * Use sc2reader to load a replay into a Python object.
 * Examine some of the basic replay information in the result.
 * Parse the contest details into a usable object.
@@ -29,7 +30,7 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 ## Included components
 
-* [IBM Data Science Experience](https://www.ibm.com/bs-en/marketplace/data-science-experience): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
+* [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
 
@@ -54,7 +55,7 @@ need to process StarCraft II replay files and build powerful visualizations.
 Follow these steps to setup and run this developer Code Pattern. The steps are
 described in detail below.
 
-1. [Sign up for the Data Science Experience](#1-sign-up-for-the-data-science-experience)
+1. [Sign up for Watson Studio](#1-sign-up-for-watson-studio)
 1. [Create IBM Cloud services](#2-create-ibm-cloud-services)
 1. [Create the notebook](#3-create-the-notebook)
 1. [Add the replay file](#4-add-the-replay-file)
@@ -63,9 +64,11 @@ described in detail below.
 1. [Analyze the results](#7-analyze-the-results)
 1. [Save and share](#8-save-and-share)
 
-## 1. Sign up for the Data Science Experience
+## 1. Sign up for Watson Studio
 
-Sign up for IBM's [Data Science Experience](http://datascience.ibm.com/). By signing up for the Data Science Experience, two services: ``DSX-Spark`` and ``DSX-ObjectStore`` will be created in your IBM Cloud account.
+Sign up for IBM's [Watson Studio](https://dataplatform.ibm.com). By creating a project in Watson Studio a free tier ``Object Storage`` service will be created in your IBM Cloud account. Take note of your service names as you will need to select them in the following steps.
+
+> Note: When creating your Object Storage service, select the ``Free`` storage type in order to avoid having to pay an upgrade fee.
 
 ## 2. Create IBM Cloud services
 
@@ -78,13 +81,15 @@ button or by following the links to use the IBM Cloud UI and create it.
 
 ## 3. Create the notebook
 
-* From the top menu `Projects` click one of your projects, or choose from `Recently updated projects` or `+``New project`.
-* Click on `+``Add to project` (upper right) -> `notebook`.
+* In [Watson Studio](https://dataplatform.ibm.com), click on `Create notebook` to create a notebook.
+* Create a project if necessary, provisioning an object storage service if required.
+* In the `Assets` tab, select the `Create notebook` option.
 * Select the `From URL` tab.
 * Enter a name for the notebook.
 * Optionally, enter a description for the notebook.
 * Enter this Notebook URL: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
-* Click the `Create Notebook` button.
+* Select the free Anaconda runtime.
+* Click the `Create` button.
 
 ![](doc/source/images/create_notebook_from_url.png)
 
@@ -146,7 +151,7 @@ a connection.
 
 #### Add a new connection to the project
 
-* Use the DSX menu to select the project containing the notebook.
+* Use the Watson Studio menu to select the project containing the notebook.
 
 * Click on `+``Add to project` -> `Connections`
 * Choose your Cloudant DB (i.e. `sc2-cloudantNoSQLDB-service`)

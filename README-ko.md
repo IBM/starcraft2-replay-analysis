@@ -7,8 +7,8 @@
 
 이 과정을 마치면 다음의 방법을 배울 수 있습니다:
 
-* DSX (IBM Data Science Experience) 에서 Jupyter 노트북의 생성 및 실행
-* 리플레이 파일에 액세스하기 위해 DSX Object Storage를 사용하기
+* Watson Studio 에서 Jupyter 노트북의 생성 및 실행
+* 리플레이 파일에 액세스하기 위해 Object Storage를 사용하기
 * sc2reader를 사용하여 Python 객체에 리플레이 게임을 로딩하기
 * 결과에서 몇 가지 기본적인 리플레이 정보를 확인
 * 해당 게임 시합의 세부 정보를 사용 가능한 객체로 파싱하기
@@ -22,7 +22,7 @@
 
 ## 구성 요소
 
-* [IBM Data Science Experience](https://www.ibm.com/bs-en/marketplace/data-science-experience): managed Spark와 같은 IBM 서비스를 포함하는 사전 구성된 협업 환경에서 RStudio, Jupyter 및 Python을 사용하여 데이터를 분석합니다.
+* [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): managed Spark와 같은 IBM 서비스를 포함하는 사전 구성된 협업 환경에서 RStudio, Jupyter 및 Python을 사용하여 데이터를 분석합니다.
 
 * [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB는 최신 웹 및 모바일 애플리케이션을 위해 설계되어 유연한 JSON 스키마를 사용하는 완전 관리형 데이터 레이어입니다.
 
@@ -47,7 +47,7 @@
 이 개발 과정을 설정하고 실행하려면 다음의 단계를 따르십시오.
 아래에 자세히 설명되어 있습니다.
 
-1. [Data Science Experience에 가입](#1-data-science-experience에-가입)
+1. [Watson Studio에 가입](#1-watson-studio-가입)
 1. [Bluemix 서비스 생성](#2-bluemix-서비스-생성)
 1. [노트북을 생성합니다](#3-노트북을-생성합니다)
 1. [리플레이 파일 추가](#4-리플레이-파일-추가)
@@ -56,9 +56,9 @@
 1. [결과 분석](#7-결과-분석)
 1. [저장 및 공유](#8-저장-및-공유)
 
-## 1. Data Science Experience에 가입
+## 1. Watson Studio에 가입
 
-IBM이 제공하는 [Data Science Experience](http://datascience.ibm.com/)에 가입합니다. Data Science Experience에 가입하면, 두 개의 서비스: ``DSX-Spark`` 와 ``DSX-ObjectStore`` 가 여러분의 Bluemix 계정에 생성됩니다.
+IBM이 제공하는 [Watson Studio](http://dataplatform.ibm.com/)에 가입합니다. Watson Studio에 가입하면, 두 개의 서비스: ``Apache Spark`` 와 ``Object Storage`` 가 여러분의 Bluemix 계정에 생성됩니다.
 
 ## 2. Bluemix 서비스 생성
 
@@ -157,7 +157,7 @@ Bluemix에 서비스를 직접 생성하셨다면
 * 상단의 `Create Database`을 클릭합니다. 연결 전에 데이터베이스가 존재하기만 하면 되니까, 데이터베이스 이름을 묻는 화면에서는 적당한 아무 이름을 넣어도 됩니다.
 
 #### 프로젝트에 새로운 연결을 추가합니다.
-DSX 메뉴를 사용하여 노트북을 포함하고 있는 프로젝트를 선택합니다.
+Watson Studio 메뉴를 사용하여 노트북을 포함하고 있는 프로젝트를 선택합니다.
 
 `Find and Add Data`를 선택하여 (`10/01` 아이콘을 찾으세요)
 하위의 `Connections` 탭을 선택합니다. 거기서 `Create Connection`을 클릭합니다.
