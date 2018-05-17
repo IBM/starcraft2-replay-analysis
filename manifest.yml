@@ -1,6 +1,6 @@
 declared-services:
   sc2-cloudantNoSQLDB-service:
-    label: cloudantNoSQLDB
+    label: sc2-cloudantNoSQLDB-service
     plan: Lite
 applications:
 - services:
