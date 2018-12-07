@@ -19,7 +19,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 The intended audience for this Code Pattern is application developers who
 need to process StarCraft II replay files and build powerful visualizations.
 
-![](doc/source/images/architecture.png)
+![architecture](doc/source/images/architecture.png)
 
 ## Flow
 
@@ -46,11 +46,11 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 * [Bokeh](http://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
 
-# Watch the Video
+## Watch the Video
 
-[![](http://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
+[![video](http://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
 
-# Steps
+## Steps
 
 Follow these steps to setup and run this developer Code Pattern. The steps are
 described in detail below.
@@ -75,7 +75,7 @@ Sign up for IBM's [Watson Studio](https://dataplatform.ibm.com). By creating a p
 Create the following IBM Cloud service by clicking the **Deploy to IBM Cloud**
 button or by following the links to use the IBM Cloud UI and create it.
 
-  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
+* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
 
 [![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
@@ -87,15 +87,16 @@ button or by following the links to use the IBM Cloud UI and create it.
 * Select the `From URL` tab.
 * Enter a name for the notebook.
 * Optionally, enter a description for the notebook.
-* Enter this Notebook URL: https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb
+* Enter this Notebook URL: `https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb`
 * Select the free Anaconda runtime.
 * Click the `Create` button.
 
-![](doc/source/images/create_notebook_from_url.png)
+![create_notebook_from_url](doc/source/images/create_notebook_from_url.png)
 
 ## 4. Add the replay file
 
-#### Add the replay to the notebook
+### Add the replay to the notebook
+
 Use `Data` (look for the `10/01` icon)
 and its `Files` tab. From there you can click
 `browse` and add a .SC2Replay file from your computer.
@@ -103,24 +104,27 @@ and its `Files` tab. From there you can click
 > Note:  If you don't have your own replays, you can get our example by cloning
 this git repo. Use the `data/example_input/king_sejong_station_le.sc2replay` file.
 
-![](doc/source/images/add_file.png)
+![add_file](doc/source/images/add_file.png)
 
-#### Create an empty cell
+### Create an empty cell for replay code and credentials
+
 Use the `+` button above to create an empty cell to hold
 the inserted code and credentials. You can put this cell
 at the top or anywhere before `Load the replay`.
 
-#### Insert to code
+### Insert to code
+
 After you add the file, use its `Insert to code` drop-down menu.
 Make sure your active cell is the empty one created earlier.
 Select `Insert StreamingBody object` from the drop-down menu.
 
-![](doc/source/images/insert_to_code.png)
+![insert_to_code](doc/source/images/insert_to_code.png)
 
 Note: This cell is marked as a hidden_cell because it contains
 sensitive credentials.
 
-#### Fix-up variable names
+### Fix-up variable names
+
 The inserted code includes a generated method with credentials and then calls
 the generated method to set a variable with a name like `streaming_body_1`. If you do
 additional inserts, the method can be re-used and the variable will change
@@ -131,7 +135,8 @@ fix the variable name `streaming_body_1` to match your inserted code.
 
 ## 5. Create a connection to Cloudant
 
-#### Create a database
+### Create a database
+
 Before you an add a connection, you need a database.
 Use your IBM Cloud dashboard to find the service you created.
 If you used `Deploy to IBM Cloud` look for `sc2-cloudantNoSQLDB-service`.
@@ -145,38 +150,30 @@ suffix.
 
 * Click on the Databases icon on the left menu.
 
-* Click `Create Database` on the top. When prompted for a database
-name, you can use any name. We just need any database before creating
-a connection.
+* Click `Create Database` on the top. When prompted for a database name, you can use any name. We just need any database before creating a connection.
 
-#### Add a new connection to the project
+### Add a new connection to the project
 
 * Use the Watson Studio menu to select the project containing the notebook.
 
 * Click on `+``Add to project` -> `Connections`
 * Choose your Cloudant DB (i.e. `sc2-cloudantNoSQLDB-service`)
-* Use the `Data` (look for the `10/01` icon)
-and its `Connections` tab. From there you can click `Create Connection`.
+* Use the `Data` (look for the `10/01` icon) and its `Connections` tab. From there you can click `Create Connection`.
 
-#### Create an empty cell
+### Create an empty cell to hold Cloudant credentials
 
-* Use the `+` button above to create an empty cell to hold
-the inserted code and credentials. You can put this cell
-at the top or anywhere before `Storing replay files`.
+* Use the `+` button above to create an empty cell to hold the inserted code and credentials. You can put this cell at the top or anywhere before `Storing replay files`.
 
-#### Add the Cloudant credentials to the notebook
+### Add the Cloudant credentials to the notebook
 
-* Use `Data` (look for the `10/01` icon)
-and its `Connections` tab. You should see the
-connection name created earlier.
-Make sure your active cell is the empty one created earlier.
+* Use `Data` (look for the `10/01` icon) and its `Connections` tab. You should see the connection name created earlier. Make sure your active cell is the empty one created earlier.
 * Select `Insert to code` (below your connection name).
 
-![](doc/source/images/insert_cloudant_conn.png)
+![insert_cloudant_conn](doc/source/images/insert_cloudant_conn.png)
 
 Note: This cell is marked as a `hidden_cell` because it contains sensitive credentials.
 
-#### Fix-up variable names
+### Fix-up credentials variable name
 
 The inserted code includes a dictionary with credentials assigned to a variable
 with a name like `credentials_1`. It may have a different name (e.g. `credentials_2`).
@@ -222,7 +219,7 @@ Basic replay information is printed out to show you how you can start working
 with a loaded replay. The output is also, of course, very helpful to identify
 which replay you are looking at.
 
-![](doc/source/images/basic_info.png)
+![basic_info](doc/source/images/basic_info.png)
 
 ### Data preparation
 
@@ -279,7 +276,7 @@ markers outside the whisker lines.
 
 For each metric, we show the players statistics side-by-side using a box plots.
 
-![](doc/source/images/box_plot_chart.png)
+![box_plot_chart](doc/source/images/box_plot_chart.png)
 
 In the above screen shot, you see side-by-side vespene per minute statistics.
 In this contest, Neeb had the advantage. In addition to the box which shows
@@ -311,7 +308,7 @@ draw arrows on the chart to highlight these up or down trends.
 The result is a side-by-side comparison that is jam-packed with statistical
 analysis.
 
-![](doc/source/images/nelson_rules_chart.png)
+![nelson_rules_chart](doc/source/images/nelson_rules_chart.png)
 
 In the above screen shot, you see the time/value hover details that you get
 with Bokeh interactive charts. Also notice the different scales and the arrows.
@@ -328,7 +325,7 @@ of your replays in the *sc2replays* database and only the latest one in
 
 ## 8. Save and share
 
-### How to save your work:
+### How to save your work
 
 Under the `File` menu, there are several ways to save your notebook:
 
@@ -338,7 +335,7 @@ Under the `File` menu, there are several ways to save your notebook:
   that contains a date and time stamp. Up to 10 versions of your notebook can be
   saved, each one retrievable by selecting the `Revert To Version` menu item.
 
-### How to share your work:
+### How to share your work
 
 You can share your notebook by selecting the “Share” button located in the top
 right section of your notebook panel. The end result of this action will be a URL
@@ -352,7 +349,7 @@ options to specify exactly what you want shared from your notebook:
 * `All content, including code` displays the notebook as is.
 * A variety of `download as` options are also available in the menu.
 
-# Sample output
+## Sample output
 
 The sample_output.html in data/examples has embedded JavaScript for
 interactive Bokeh charts. Use rawgit.com to view it with the following
@@ -360,11 +357,11 @@ link:
 
 [Sample Output](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
 
-# Troubleshooting
+## Troubleshooting
 
 [See DEBUGGING.md.](DEBUGGING.md)
 
-# License
+## License
 
 This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
 
