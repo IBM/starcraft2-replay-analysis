@@ -351,7 +351,7 @@ options to specify exactly what you want shared from your notebook:
 
 ## Sample output
 
-The sample_output.html in data/examples has embedded JavaScript for
+The `sample_output.html` in `data/examples` has embedded JavaScript for
 interactive Bokeh charts. Use rawgit.com to view it with the following
 link:
 
@@ -359,7 +359,7 @@ link:
 
 ## Troubleshooting
 
-[See DEBUGGING.md.](DEBUGGING.md)
+[See DEBUGGING.md](DEBUGGING.md).
 
 ## License
 
