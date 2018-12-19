@@ -4,9 +4,9 @@
 
 > Data Science Experience is now Watson Studio. Although some images in this code pattern may show the service as Data Science Experience, the steps and processes will still work.
 
-In this Code Pattern we will use Jupyter notebooks to analyze StarCraft II replays and extract interesting insights.
+In this code pattern we will use Jupyter notebooks to analyze StarCraft II replays and extract interesting insights.
 
-When the reader has completed this Code Pattern, they will understand how to:
+When the reader has completed this code pattern, they will understand how to:
 
 * Create and run a Jupyter notebook in Watson Studio.
 * Use Object Storage to access a replay file.
@@ -16,7 +16,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 * Visualize the contest with Bokeh graphics.
 * Store the processed replay in Cloudant.
 
-The intended audience for this Code Pattern is application developers who
+The intended audience for this code pattern is application developers who
 need to process StarCraft II replay files and build powerful visualizations.
 
 ![architecture](doc/source/images/architecture.png)
@@ -32,9 +32,9 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
 
-* [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
+* [Cloudant NoSQL DB](https://www.ibm.com/cloud/cloudant): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
 
-* [IBM Cloud Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): An IBM Cloud service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
+* [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage): An IBM Cloud service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
 
 ## Featured technologies
 
@@ -52,7 +52,7 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 ## Steps
 
-Follow these steps to setup and run this developer Code Pattern. The steps are
+Follow these steps to setup and run this developer code pattern. The steps are
 described in detail below.
 
 1. [Sign up for Watson Studio](#1-sign-up-for-watson-studio)
@@ -363,6 +363,6 @@ link:
 
 ## License
 
-This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
+This code pattern is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
-[Apache Software License (ASL) FAQ](http://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+[Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
