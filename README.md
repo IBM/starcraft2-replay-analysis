@@ -55,62 +55,68 @@ need to process StarCraft II replay files and build powerful visualizations.
 Follow these steps to setup and run this developer code pattern. The steps are
 described in detail below.
 
-1. [Sign up for Watson Studio](#1-sign-up-for-watson-studio)
-1. [Create IBM Cloud services](#2-create-ibm-cloud-services)
-1. [Create the notebook](#3-create-the-notebook)
-1. [Add the replay file](#4-add-the-replay-file)
-1. [Create a connection to Cloudant](#5-create-a-connection-to-cloudant)
-1. [Run the notebook](#6-run-the-notebook)
-1. [Analyze the results](#7-analyze-the-results)
-1. [Save and share](#8-save-and-share)
+1. [Clone the repo](#1-clone-the-repo)
+1. [Sign up for Watson Studio](#2-sign-up-for-watson-studio)
+1. [Create a project](#3-create-a-project)
+1. [Create a Cloudant service instance](#4-create-a-cloudant-service-instance)
+1. [Create the notebook in Watson Studio](#5-create-the-notebook-in-watson-studio)
+1. [Add the replay file](#6-add-the-replay-file)
+1. [Add the Cloudant credentials to the notebook](#7-add-the-cloudant-credentials-to-the-notebook)
+1. [Run the notebook](#8-run-the-notebook)
+1. [Analyze the results](#9-analyze-the-results)
+1. [Save and share](#10-save-and-share)
 
-## 1. Sign up for Watson Studio
+### 1. Clone the repo
 
-Sign up for IBM's [Watson Studio](https://dataplatform.ibm.com). By creating a project in Watson Studio a free tier ``Object Storage`` service will be created in your IBM Cloud account. Take note of your service names as you will need to select them in the following steps.
+Clone the `starcraft2-replay-analysis` repo locally. In a terminal, run:
 
-> Note: When creating your Object Storage service, select the ``Free`` storage type in order to avoid having to pay an upgrade fee.
+```bash
+git clone https://github.com/IBM/starcraft2-replay-analysis
+```
 
-## 2. Create IBM Cloud services
+### 2. Sign up for Watson Studio
 
-Create the following IBM Cloud service by clicking the **Deploy to IBM Cloud**
-button or by following the links to use the IBM Cloud UI and create it.
+* Sign up for IBM's [Watson Studio](https://dataplatform.cloud.ibm.com). By creating a project in Watson Studio a free tier `Object Storage` service will be created in your IBM Cloud account. Take note of your service names as you will need to select them in the following steps.
 
-* [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
+  > Note: When creating your Object Storage service, select the `Free` storage type in order to avoid having to pay an upgrade fee.
 
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+### 3. Create a project
 
-## 3. Create the notebook
+* In [Watson Studio](https://dataplatform.cloud.ibm.com) create a new project which will contain the notebook and connections to the IBM Cloud services. Choose the `Data Science` project tile.
+  ![create_project](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/CreateDataScienceProject.png)
 
-* In [Watson Studio](https://dataplatform.ibm.com), click on `Create notebook` to create a notebook.
-* Create a project if necessary, provisioning an object storage service if required.
-* In the `Assets` tab, select the `Create notebook` option.
-* Select the `From URL` tab.
+### 4. Create a Cloudant service instance
+
+* Use the menu for `Services > Data Services`, then click `+ Add service` and `Add` and `Create` a Cloudant service.
+* Use the 3-dot actions menu to select `Manage in IBM Cloud` for the new Cloudant service.
+* Click on `Service credentials` in the left sidebar.
+* If credentials were not created, click `New credential +` to add them.
+* Use the `View credentials` dropdown and copy the credentials to use in the notebook.
+
+### 5. Create the notebook in Watson Studio
+
+* In your Watson Studio project, click on `+ Add to project` and then click the `Notebook` tile.
+  ![add_notebook](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/StudioAddToProjectNotebook.png)
+* Select the `From file` tab.
 * Enter a name for the notebook.
 * Optionally, enter a description for the notebook.
-* Enter this Notebook URL: `https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb`
-* Select the free Anaconda runtime.
-* Click the `Create` button.
+* Use the `Choose file` button and `Open` the file `notebooks/starcraft2_replay_analysis.ipynb` from your local cloned repo.
+* For runtime choose `Default Python 3.5 Free (1 vCPU and 4 GB RAM)`.
+* Click the `Create Notebook` button.
 
-![create_notebook_from_url](doc/source/images/create_notebook_from_url.png)
-
-## 4. Add the replay file
+## 6. Add the replay file
 
 ### Add the replay to the notebook
 
-Use `Data` (look for the `10/01` icon)
-and its `Files` tab. From there you can click
-`browse` and add a .SC2Replay file from your computer.
-
-> Note:  If you don't have your own replays, you can get our example by cloning
-this git repo. Use the `data/example_input/king_sejong_station_le.sc2replay` file.
+Use `Data` (look for the `10/01` icon) and its `Files` tab. From there you can click `browse` and add a .SC2Replay file from your computer. Use the `data/example_input/king_sejong_station_le.sc2replay` file from your cloned repo.
 
 ![add_file](doc/source/images/add_file.png)
 
 ### Create an empty cell for replay code and credentials
 
-Use the `+` button above to create an empty cell to hold
+Use the `+` to create an empty cell to hold
 the inserted code and credentials. You can put this cell
-at the top or anywhere before `Load the replay`.
+at the top or anywhere before the `Load the replay` cell.
 
 ### Insert to code
 
@@ -133,53 +139,24 @@ additional inserts, the method can be re-used and the variable will change
 Later in the notebook, we set `replay_file = streaming_body_1`. So you might need to
 fix the variable name `streaming_body_1` to match your inserted code.
 
-## 5. Create a connection to Cloudant
+## 7. Add the Cloudant credentials to the notebook
 
-### Create a database
+Use the `+` button above to create an empty cell to hold the credentials. You can put this cell at the top or anywhere before `Storing replay files`. You should add a `# @hidden_cell` line to help you avoid sharing credentials (but be aware that giving people access to the notebook will give them access to your credentials).
 
-Before you an add a connection, you need a database.
-Use your IBM Cloud dashboard to find the service you created.
-If you used `Deploy to IBM Cloud` look for `sc2-cloudantNoSQLDB-service`.
-If you created the service directly in IBM Cloud you may have picked a
-different name or used the default name of `Cloudant NoSQL DB-` with a random
-suffix.
+Create a variable named `credentials_1` (which is used later in the notebook) and paste the Cloudant credentials JSON as the value.  The `apikey` and `username` will be used. The other credential keys may be included -- they will be ignored.
 
-* Click on the service.
+The code cell should look like this:
 
-* Use the `Manage` tab and hit the `LAUNCH` button.
+```bash
+# @hidden_cell
+credentials_1 = {
+  "apikey": "Aa_aAaaa9aAAAa9999A9aa999aaaAaaaAaaA-AAAAA-A",
+  "username": "a9999aa9-9aa9-9999-aa99-9a999aaa9a99-bluemix",
+  "other": "other credential keys/values are ignored..."
+}
+```
 
-* Click on the Databases icon on the left menu.
-
-* Click `Create Database` on the top. When prompted for a database name, you can use any name. We just need any database before creating a connection.
-
-### Add a new connection to the project
-
-* Use the Watson Studio menu to select the project containing the notebook.
-
-* Click on `+``Add to project` -> `Connections`
-* Choose your Cloudant DB (i.e. `sc2-cloudantNoSQLDB-service`)
-* Use the `Data` (look for the `10/01` icon) and its `Connections` tab. From there you can click `Create Connection`.
-
-### Create an empty cell to hold Cloudant credentials
-
-* Use the `+` button above to create an empty cell to hold the inserted code and credentials. You can put this cell at the top or anywhere before `Storing replay files`.
-
-### Add the Cloudant credentials to the notebook
-
-* Use `Data` (look for the `10/01` icon) and its `Connections` tab. You should see the connection name created earlier. Make sure your active cell is the empty one created earlier.
-* Select `Insert to code` (below your connection name).
-
-![insert_cloudant_conn](doc/source/images/insert_cloudant_conn.png)
-
-Note: This cell is marked as a `hidden_cell` because it contains sensitive credentials.
-
-### Fix-up credentials variable name
-
-The inserted code includes a dictionary with credentials assigned to a variable
-with a name like `credentials_1`. It may have a different name (e.g. `credentials_2`).
-Rename it or reassign it if needed. The notebook code assumes it will be `credentials_1`.
-
-## 6. Run the notebook
+## 8. Run the notebook
 
 When a notebook is executed, what is actually happening is that each code cell in
 the notebook is executed, in order, from top to bottom.
@@ -205,7 +182,7 @@ There are several ways to execute the code cells in your notebook:
     panel. Here you can schedule your notebook to be executed once at some future
     time, or repeatedly at your specified interval.
 
-## 7. Analyze the results
+## 9. Analyze the results
 
 The result of running the notebook is a report which may be shared with or
 without sharing the code. You can share the code for an audience that wants
@@ -266,19 +243,18 @@ metrics.
 #### Box plot charts
 
 Once you get to this point, you can see that generating a box plot is quite
-easy thanks to _pandas DataFrames_ and _Bokeh BoxPlot_.
+easy thanks to _pandas DataFrames_ and _Seaborn BoxPlot_.
 
 The box plot is a graphical representation of the summary statistics for the
 metric for each player. The "box" covers the range from the first to the third
 quartile. The horizontal line in the box shows the mean. The "whisker" shows
-the spread of data outside these quartiles. Outliers, if any, show up as
-markers outside the whisker lines.
+the spread of data outside these quartiles. Outliers, if any, show up as markers outside the whisker lines. An added swarmplot provides another representation of the distribution of values.
 
 For each metric, we show the players statistics side-by-side using a box plots.
 
 ![box_plot_chart](doc/source/images/box_plot_chart.png)
 
-In the above screen shot, you see side-by-side vespene per minute statistics.
+In the above screen shot, you see side-by-side comparison of 4 metrics.
 In this contest, Neeb had the advantage. In addition to the box which shows
 the quartiles and the whisker that shows the range, this example has outlier
 indicators. In many cases, there will be no outliers.
@@ -323,7 +299,7 @@ the loading and parsing we stored them as JSON documents. You'll see all
 of your replays in the *sc2replays* database and only the latest one in
 *sc2recents*.
 
-## 8. Save and share
+## 10. Save and share
 
 ### How to save your work
 
@@ -351,11 +327,12 @@ options to specify exactly what you want shared from your notebook:
 
 ## Sample output
 
-The `sample_output.html` in `data/examples` has embedded JavaScript for
-interactive Bokeh charts. Use rawgit.com to view it with the following
-link:
+The the notebook with output included is in `data/examples/starcraft2_replay_analysis.ipynb`.
+<!-- TODO:
 
 [Sample Output](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
+
+ -->
 
 ## Troubleshooting
 
