@@ -104,21 +104,21 @@ git clone https://github.com/IBM/starcraft2-replay-analysis
 * For runtime choose `Default Python 3.5 Free (1 vCPU and 4 GB RAM)`.
 * Click the `Create Notebook` button.
 
-## 6. Add the replay file
+### 6. Add the replay file
 
-### Add the replay to the notebook
+#### Add the replay to the notebook
 
 Use `Data` (look for the `10/01` icon) and its `Files` tab. From there you can click `browse` and add a .SC2Replay file from your computer. Use the `data/example_input/king_sejong_station_le.sc2replay` file from your cloned repo.
 
 ![add_file](doc/source/images/add_file.png)
 
-### Create an empty cell for replay code and credentials
+#### Create an empty cell for replay code and credentials
 
 Use the `+` to create an empty cell to hold
 the inserted code and credentials. You can put this cell
 at the top or anywhere before the `Load the replay` cell.
 
-### Insert to code
+#### Insert to code
 
 After you add the file, use its `Insert to code` drop-down menu.
 Make sure your active cell is the empty one created earlier.
@@ -129,7 +129,7 @@ Select `Insert StreamingBody object` from the drop-down menu.
 Note: This cell is marked as a hidden_cell because it contains
 sensitive credentials.
 
-### Fix-up variable names
+#### Fix-up variable names
 
 The inserted code includes a generated method with credentials and then calls
 the generated method to set a variable with a name like `streaming_body_1`. If you do
@@ -139,7 +139,7 @@ additional inserts, the method can be re-used and the variable will change
 Later in the notebook, we set `replay_file = streaming_body_1`. So you might need to
 fix the variable name `streaming_body_1` to match your inserted code.
 
-## 7. Add the Cloudant credentials to the notebook
+### 7. Add the Cloudant credentials to the notebook
 
 Use the `+` button above to create an empty cell to hold the credentials. You can put this cell at the top or anywhere before `Storing replay files`. You should add a `# @hidden_cell` line to help you avoid sharing credentials (but be aware that giving people access to the notebook will give them access to your credentials).
 
@@ -156,7 +156,7 @@ credentials_1 = {
 }
 ```
 
-## 8. Run the notebook
+### 8. Run the notebook
 
 When a notebook is executed, what is actually happening is that each code cell in
 the notebook is executed, in order, from top to bottom.
@@ -182,7 +182,7 @@ There are several ways to execute the code cells in your notebook:
     panel. Here you can schedule your notebook to be executed once at some future
     time, or repeatedly at your specified interval.
 
-## 9. Analyze the results
+### 9. Analyze the results
 
 The result of running the notebook is a report which may be shared with or
 without sharing the code. You can share the code for an audience that wants
@@ -190,7 +190,7 @@ to see how you came your conclusions. The text, code and output/charts are
 combined in a single web page. For an audience that does not want to see the
 code, you can share a web page that only shows text and output/charts.
 
-### Basic output
+#### Basic output
 
 Basic replay information is printed out to show you how you can start working
 with a loaded replay. The output is also, of course, very helpful to identify
@@ -198,22 +198,22 @@ which replay you are looking at.
 
 ![basic_info](doc/source/images/basic_info.png)
 
-### Data preparation
+#### Data preparation
 
 If you look through the code, you'll see that a lot of work went into preparing
 the data.
 
-#### Unit and building groups
+##### Unit and building groups
 
 List of strings were created for the _known_ units and groups. These are needed
 to recognize the event types.
 
-#### Event handlers
+##### Event handlers
 
 Handler methods were written to process the different types of events and
 accumulate the information in the player's event list.
 
-#### The ReplayData class
+##### The ReplayData class
 
 We created the `ReplayData` class to take a replay stream of bytes and process
 them with all our event handlers. The resulting player event lists are stored
@@ -222,7 +222,7 @@ method. This method returns a Python dictionary that makes it easy to process
 the replay events with our Python code. We also use this dict to create a
 Cloudant JSON document.
 
-### Visualization
+#### Visualization
 
 To visualize the replay we chose to use 2 different types of charts and
 show a side-by-side comparison of the competing players.
@@ -240,7 +240,7 @@ metrics.
 * Supply utilization (used / available)
 * Worker/supply ratio (workers / supply used)
 
-#### Box plot charts
+##### Box plot charts
 
 Once you get to this point, you can see that generating a box plot is quite
 easy thanks to _pandas DataFrames_ and _Seaborn BoxPlot_.
@@ -259,7 +259,7 @@ In this contest, Neeb had the advantage. In addition to the box which shows
 the quartiles and the whisker that shows the range, this example has outlier
 indicators. In many cases, there will be no outliers.
 
-#### Nelson rules charts
+##### Nelson rules charts
 
 The Nelson rules charts are not so easy. You'll notice quite a bit of code in
 helper methods to create these charts.
@@ -292,16 +292,16 @@ In this contest, Neeb made two early pushes and got an advantage in minerals.
 If you run the notebook, you'll see other examples showing where the winner
 got the advantage.
 
-### Stored replay documents
+#### Stored replay documents
 
 You can browse your Cloudant database to see the stored replays. After all
 the loading and parsing we stored them as JSON documents. You'll see all
 of your replays in the *sc2replays* database and only the latest one in
 *sc2recents*.
 
-## 10. Save and share
+### 10. Save and share
 
-### How to save your work
+#### How to save your work
 
 Under the `File` menu, there are several ways to save your notebook:
 
@@ -311,7 +311,7 @@ Under the `File` menu, there are several ways to save your notebook:
   that contains a date and time stamp. Up to 10 versions of your notebook can be
   saved, each one retrievable by selecting the `Revert To Version` menu item.
 
-### How to share your work
+#### How to share your work
 
 You can share your notebook by selecting the “Share” button located in the top
 right section of your notebook panel. The end result of this action will be a URL
@@ -327,12 +327,7 @@ options to specify exactly what you want shared from your notebook:
 
 ## Sample output
 
-The the notebook with output included is in `data/examples/starcraft2_replay_analysis.ipynb`.
-<!-- TODO:
-
-[Sample Output](https://cdn.rawgit.com/IBM/starcraft2-replay-analysis/46aed2f7f33b7f9e3a9bd06678a13ba150a42c26/data/examples/sample_output.html)
-
- -->
+The the notebook with output included can be viewed [here](https://nbviewer.jupyter.org/github/IBM/starcraft2-replay-analysis/blob/master/data/examples/starcraft2_replay_analysis.ipynb).
 
 ## Troubleshooting
 
