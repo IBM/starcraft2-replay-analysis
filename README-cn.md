@@ -31,9 +31,9 @@
 
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio)：在一个包含 IBM 插件（比如托管的 Spark）的已配置好的协作环境中，使用 RStudio、Jupyter 和 Python 分析数据。
 
-* [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter)：Cloudant NoSQL DB 是一个全面托管的数据层，专为利用灵活 JSON 模式的现代 Web 和移动应用程序而设计。
+* [Cloudant NoSQL DB](https://cloud.ibm.com/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter)：Cloudant NoSQL DB 是一个全面托管的数据层，专为利用灵活 JSON 模式的现代 Web 和移动应用程序而设计。
 
-* [IBM Cloud Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter)：一个 IBM Cloud 服务，提供非结构化的云数据存储来构建和交付富有成本效益的、高度可靠的、能迅速投入市场的应用程序和服务。
+* [IBM Cloud Object Storage](https://cloud.ibm.com/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter)：一个 IBM Cloud 服务，提供非结构化的云数据存储来构建和交付富有成本效益的、高度可靠的、能迅速投入市场的应用程序和服务。
 
 ## 精选技术
 
@@ -74,9 +74,9 @@
 单击 **Deploy to IBM Cloud** 按钮创建下面这个 IBM Cloud 服务，
 或跟随这些链接使用 IBM Cloud 用户界面来创建该服务。
 
-  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
+  * [**Cloudant NoSQL DB**](https://cloud.ibm.com/catalog/services/cloudant-nosql-db)
 
-[![部署到 IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+[![部署到 IBM Cloud](https://cloud.ibm.com/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3. 创建 Notebook
 

@@ -24,9 +24,9 @@
 
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): managed Spark와 같은 IBM 서비스를 포함하는 사전 구성된 협업 환경에서 RStudio, Jupyter 및 Python을 사용하여 데이터를 분석합니다.
 
-* [Cloudant NoSQL DB](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB는 최신 웹 및 모바일 애플리케이션을 위해 설계되어 유연한 JSON 스키마를 사용하는 완전 관리형 데이터 레이어입니다.
+* [Cloudant NoSQL DB](https://cloud.ibm.com/catalog/services/cloudant-nosql-db/?cm_sp=dw-bluemix-_-code-_-devcenter): Cloudant NoSQL DB는 최신 웹 및 모바일 애플리케이션을 위해 설계되어 유연한 JSON 스키마를 사용하는 완전 관리형 데이터 레이어입니다.
 
-* [Bluemix Object Storage](https://console.ng.bluemix.net/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): 구조화되지 않은 클라우드 데이터 저장소를 제공하는 Bluemix 서비스로, 안정성이 높고 비용 효율적인 앱 및 서비스를 빠르게 빌드하고 배포할 수 있습니다.
+* [Bluemix Object Storage](https://cloud.ibm.com/catalog/services/object-storage/?cm_sp=dw-bluemix-_-code-_-devcenter): 구조화되지 않은 클라우드 데이터 저장소를 제공하는 Bluemix 서비스로, 안정성이 높고 비용 효율적인 앱 및 서비스를 빠르게 빌드하고 배포할 수 있습니다.
 
 ## 주요 기술
 
@@ -65,9 +65,9 @@ IBM이 제공하는 [Watson Studio](http://dataplatform.ibm.com/)에 가입합�
 **Deploy to Bluemix** 버튼을 클릭하여 아래의 Bluemix 서비스를 생성합니다.
 또는 아래의 링크로 가서 Bluemix UI를 사용하여 생성합니다.
 
-  * [**Cloudant NoSQL DB**](https://console.ng.bluemix.net/catalog/services/cloudant-nosql-db)
+  * [**Cloudant NoSQL DB**](https://cloud.ibm.com/catalog/services/cloudant-nosql-db)
 
-[![Bluemix에 배포](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
+[![Bluemix에 배포](https://cloud.ibm.com/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/ibm/starcraft2-replay-analysis)
 
 ## 3. 노트북을 생성합니다
 
