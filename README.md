@@ -38,17 +38,17 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 ## Featured technologies
 
-* [Jupyter Notebooks](http://jupyter.org/): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
+* [Jupyter Notebooks](https://jupyter.org/): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
 
-* [sc2reader](http://sc2reader.readthedocs.io/en/latest/): A Python library that extracts data from various [Starcraft II](http://us.battle.net/sc2/en/) resources to power tools and services for the SC2 community.
+* [sc2reader](https://sc2reader.readthedocs.io/en/latest/): A Python library that extracts data from various [Starcraft II](https://starcraft2.com/en-us/) resources to power tools and services for the SC2 community.
 
-* [pandas](http://pandas.pydata.org/): A Python library providing high-performance, easy-to-use data structures.
+* [pandas](https://pandas.pydata.org/): A Python library providing high-performance, easy-to-use data structures.
 
-* [Bokeh](http://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
+* [Bokeh](https://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
 
 ## Watch the Video
 
-[![video](http://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
+[![video](https://img.youtube.com/vi/iKToQpJZIL0/0.jpg)](https://www.youtube.com/watch?v=iKToQpJZIL0)
 
 ## Steps
 
