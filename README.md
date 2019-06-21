@@ -1,9 +1,5 @@
 # StarCraft II Replay Analysis with Jupyter Notebooks
 
-*Read this in other languages: [한국어](README-ko.md), [中国](README-cn.md).*
-
-> Data Science Experience is now Watson Studio. Although some images in this code pattern may show the service as Data Science Experience, the steps and processes will still work.
-
 In this code pattern we will use Jupyter notebooks to analyze StarCraft II replays and extract interesting insights.
 
 When the reader has completed this code pattern, they will understand how to:
@@ -31,19 +27,14 @@ need to process StarCraft II replay files and build powerful visualizations.
 ## Included components
 
 * [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
-
 * [Cloudant NoSQL DB](https://www.ibm.com/cloud/cloudant): Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
-
 * [IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage): An IBM Cloud service that provides an unstructured cloud data store to build and deliver cost effective apps and services with high reliability and fast speed to market.
 
 ## Featured technologies
 
 * [Jupyter Notebooks](https://jupyter.org/): An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text.
-
 * [sc2reader](https://sc2reader.readthedocs.io/en/latest/): A Python library that extracts data from various [Starcraft II](https://starcraft2.com/en-us/) resources to power tools and services for the SC2 community.
-
 * [pandas](https://pandas.pydata.org/): A Python library providing high-performance, easy-to-use data structures.
-
 * [Bokeh](https://bokeh.pydata.org/en/latest/): A Python interactive visualization library.
 
 ## Watch the Video
@@ -56,15 +47,14 @@ Follow these steps to setup and run this developer code pattern. The steps are
 described in detail below.
 
 1. [Clone the repo](#1-clone-the-repo)
-1. [Sign up for Watson Studio](#2-sign-up-for-watson-studio)
-1. [Create a project](#3-create-a-project)
-1. [Create a Cloudant service instance](#4-create-a-cloudant-service-instance)
-1. [Create the notebook in Watson Studio](#5-create-the-notebook-in-watson-studio)
-1. [Add the replay file](#6-add-the-replay-file)
-1. [Add the Cloudant credentials to the notebook](#7-add-the-cloudant-credentials-to-the-notebook)
-1. [Run the notebook](#8-run-the-notebook)
-1. [Analyze the results](#9-analyze-the-results)
-1. [Save and share](#10-save-and-share)
+1. [Create a project](#2-create-a-project)
+1. [Create a Cloudant service instance](#3-create-a-cloudant-service-instance)
+1. [Create the notebook in Watson Studio](#4-create-the-notebook-in-watson-studio)
+1. [Add the replay file](#5-add-the-replay-file)
+1. [Add the Cloudant credentials to the notebook](#6-add-the-cloudant-credentials-to-the-notebook)
+1. [Run the notebook](#7-run-the-notebook)
+1. [Analyze the results](#8-analyze-the-results)
+1. [Save and share](#9-save-and-share)
 
 ### 1. Clone the repo
 
@@ -74,18 +64,25 @@ Clone the `starcraft2-replay-analysis` repo locally. In a terminal, run:
 git clone https://github.com/IBM/starcraft2-replay-analysis
 ```
 
-### 2. Sign up for Watson Studio
+### 2. Create a new Watson Studio project
 
-* Sign up for IBM's [Watson Studio](https://dataplatform.cloud.ibm.com). By creating a project in Watson Studio a free tier `Object Storage` service will be created in your IBM Cloud account. Take note of your service names as you will need to select them in the following steps.
+* Log into IBM's [Watson Studio](https://dataplatform.cloud.ibm.com). Once in, you'll land on the dashboard.
 
-  > Note: When creating your Object Storage service, select the `Free` storage type in order to avoid having to pay an upgrade fee.
+* Create a new project by clicking `+ New project` and choosing `Data Science`:
 
-### 3. Create a project
+  ![studio project](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/new-project-data-science.png)
 
-* In [Watson Studio](https://dataplatform.cloud.ibm.com) create a new project which will contain the notebook and connections to the IBM Cloud services. Choose the `Data Science` project tile.
-  ![create_project](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/CreateDataScienceProject.png)
+* Enter a name for the project name and click `Create`.
 
-### 4. Create a Cloudant service instance
+* **NOTE**: By creating a project in Watson Studio a free tier `Object Storage` service and `Watson Machine Learning` service will be created in your IBM Cloud account. Select the `Free` storage type to avoid fees.
+
+  ![studio-new-project](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/new-project-data-science-name.png)
+
+* Upon a successful project creation, you are taken to a dashboard view of your project. Take note of the `Assets` and `Settings` tabs, we'll be using them to associate our project with any external assets (datasets and notebooks) and any IBM cloud services.
+
+  ![studio-project-dashboard](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/overview-empty.png)
+
+### 3. Create a Cloudant service instance
 
 * Use the menu for `Services > Data Services`, then click `+ Add service` and `Add` and `Create` a Cloudant service.
 * Use the 3-dot actions menu to select `Manage in IBM Cloud` for the new Cloudant service.
@@ -93,24 +90,43 @@ git clone https://github.com/IBM/starcraft2-replay-analysis
 * If credentials were not created, click `New credential +` to add them.
 * Use the `View credentials` dropdown and copy the credentials to use in the notebook.
 
-### 5. Create the notebook in Watson Studio
+### 4. Create the notebook in Watson Studio
 
-* In your Watson Studio project, click on `+ Add to project` and then click the `Notebook` tile.
-  ![add_notebook](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/StudioAddToProjectNotebook.png)
-* Select the `From file` tab.
-* Enter a name for the notebook.
-* Optionally, enter a description for the notebook.
-* Use the `Choose file` button and `Open` the file `notebooks/starcraft2_replay_analysis.ipynb` from your local cloned repo.
-* For runtime choose `Default Python 3.5 Free (1 vCPU and 4 GB RAM)`.
-* Click the `Create Notebook` button.
+* From the new project `Overview` panel, click `+ Add to project` on the top right and choose the `Notebook` asset type.
 
-### 6. Add the replay file
+  ![studio-project-dashboard](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/add-assets-notebook.png)
+
+* Fill in the following information:
+
+  * Select the `From URL` tab. [1]
+  * Enter a `Name` for the notebook and optionally a description. [2]
+  * Under `Notebook URL` provide the following url: [https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb](https://github.com/IBM/starcraft2-replay-analysis/blob/master/notebooks/starcraft2_replay_analysis.ipynb) [3]
+  * For `Runtime` select the `Python 3.5` option. [4]
+
+  ![add notebook](https://github.com/IBM/pattern-utils/raw/master/watson-studio/notebook-create-url-py35.png)
+
+* Click the `Create` button.
+
+* **TIP:** Once successfully imported, the notebook should appear in the `Notebooks` section of the `Assets` tab.
+
+### 5. Add the replay file
 
 #### Add the replay to the notebook
 
-Use `Data` (look for the `10/01` icon) and its `Files` tab. From there you can click `browse` and add a .SC2Replay file from your computer. Use the `data/example_input/king_sejong_station_le.sc2replay` file from your cloned repo.
+* This notebook uses the dataset [king_sejong_station_le.sc2replay](data/king_sejong_station_le.sc2replay). We need to load this assets to our project.
 
-![add_file](doc/source/images/add_file.png)
+* From the new project `Overview` panel, click `+ Add to project` on the top right and choose the `Data` asset type.
+
+   ![add asset](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/add-assets-data.png)
+
+* A panel on the right of the screen will appear to assit you in uploading data. Follow the numbered steps in the image below.
+
+  * Ensure you're on the `Load` tab. [1]
+  * Click on the `browse` option. From your machine, browse to the location of the `king_sejong_station_le.sc2replay` file in this repository, and upload it. [not numbered]
+  * Once uploaded, go to the `Files` tab. [2]
+  * Ensure the files appear. [3]
+
+   ![add data](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/data-add-data-asset.png)
 
 #### Create an empty cell for replay code and credentials
 
@@ -139,7 +155,7 @@ additional inserts, the method can be re-used and the variable will change
 Later in the notebook, we set `replay_file = streaming_body_1`. So you might need to
 fix the variable name `streaming_body_1` to match your inserted code.
 
-### 7. Add the Cloudant credentials to the notebook
+### 6. Add the Cloudant credentials to the notebook
 
 Use the `+` button above to create an empty cell to hold the credentials. You can put this cell at the top or anywhere before `Storing replay files`. You should add a `# @hidden_cell` line to help you avoid sharing credentials (but be aware that giving people access to the notebook will give them access to your credentials).
 
@@ -156,7 +172,7 @@ credentials_1 = {
 }
 ```
 
-### 8. Run the notebook
+### 7. Run the notebook
 
 When a notebook is executed, what is actually happening is that each code cell in
 the notebook is executed, in order, from top to bottom.
@@ -168,21 +184,9 @@ format is `In [x]:`. Depending on the state of the notebook, the `x` can be:
 * A number, this number represents the relative order this code step was executed.
 * A `*`, this indicates that the cell is currently executing.
 
-There are several ways to execute the code cells in your notebook:
+* Click the `(►) Run` button to start stepping through the notebook.
 
-* One cell at a time.
-  * Select the cell, and then press the `Play` button in the toolbar.
-* Batch mode, in sequential order.
-  * From the `Cell` menu bar, there are several options available. For example, you
-    can `Run All` cells in your notebook, or you can `Run All Below`, that will
-    start executing from the first cell under the currently selected cell, and then
-    continue executing all cells that follow.
-* At a scheduled time.
-  * Press the `Schedule` button located in the top right section of your notebook
-    panel. Here you can schedule your notebook to be executed once at some future
-    time, or repeatedly at your specified interval.
-
-### 9. Analyze the results
+### 8. Analyze the results
 
 The result of running the notebook is a report which may be shared with or
 without sharing the code. You can share the code for an audience that wants
@@ -299,7 +303,7 @@ the loading and parsing we stored them as JSON documents. You'll see all
 of your replays in the *sc2replays* database and only the latest one in
 *sc2recents*.
 
-### 10. Save and share
+### 9. Save and share
 
 #### How to save your work
 
@@ -327,11 +331,11 @@ options to specify exactly what you want shared from your notebook:
 
 ## Sample output
 
-The the notebook with output included can be viewed [here](https://nbviewer.jupyter.org/github/IBM/starcraft2-replay-analysis/blob/master/data/examples/starcraft2_replay_analysis.ipynb).
+The the notebook with output included can be viewed [here](https://nbviewer.jupyter.org/github/IBM/starcraft2-replay-analysis/blob/master/examples/starcraft2_replay_analysis.ipynb).
 
 ## Troubleshooting
 
-[See DEBUGGING.md](DEBUGGING.md).
+[See DEVELOPING.md](DEVELOPING.md).
 
 ## License
 
