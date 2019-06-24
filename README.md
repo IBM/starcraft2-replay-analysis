@@ -43,11 +43,10 @@ need to process StarCraft II replay files and build powerful visualizations.
 
 ## Steps
 
-Follow these steps to setup and run this developer code pattern. The steps are
-described in detail below.
+Follow these steps to setup and run this developer code pattern. The steps are described in detail below.
 
 1. [Clone the repo](#1-clone-the-repo)
-1. [Create a project](#2-create-a-project)
+1. [Create a new Watson Studio project](#2-create-a-new-watson-studio-project)
 1. [Create a Cloudant service instance](#3-create-a-cloudant-service-instance)
 1. [Create the notebook in Watson Studio](#4-create-the-notebook-in-watson-studio)
 1. [Add the replay file](#5-add-the-replay-file)
